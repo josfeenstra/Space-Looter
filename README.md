@@ -21,6 +21,9 @@ Daarnaast verschijnt er elke dag een nieuwe, "Daily puzzle", die de app zal leze
 ## TODO: 
 BASIC FUNCTIONALITY
 - maak een hoofdmenu met de knoppen: 
+-- LEVELS (easy, medium, hard, expert) 
+-- DAILY
+-- SETTINGS 
 
 BACKEND
 - bepaal de opzet van de board-JSON en de answer-JSON
