@@ -15,6 +15,10 @@ De app houdt je progress bij, en deze progress kan gereset worden.
 
 Daarnaast verschijnt er elke dag een nieuwe, "Daily puzzle", die de app zal lezen van een door een api verstuurde Json. Van deze zelfde server kan ook de Json voor de oplossing worden aangevraagd, tegen een micro transaction. 
 
+## sketch
+Structuur van de app
+![boardstate](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/schets%20alles.png)
+
 ## voorbeeld bord:
 Het doel van het spel is om met de HERO (rode cirkel), de LOOT (gele blokken) naar de uitgang te duwen. Dit doe je doormiddel van met de HERO stappen (omhoog, omlaag, links, rechts) te zetten. Bepaalde blokken kunnen niet verplaatst worden (de links rechts blokken), andere kunnen alleen maar in 1 richting verplaatst worden (horizontaal / verticaal)
 
