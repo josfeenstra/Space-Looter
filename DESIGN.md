@@ -31,7 +31,8 @@
 - **class Game**
   - class containing the core of the game.
   - accepts 6 input "buttons": 
-  - up | down | left | right | go back | reset 
+  - --- | --- | --- | --- | --- | --- 
+    up | down | left | right | go back | reset 
   
 - **class Board**
   - Function | Purpose
