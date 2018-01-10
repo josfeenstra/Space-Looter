@@ -1,5 +1,5 @@
- !(hoi)[link]
-
+![design document](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/documentation/design%20document.png)
+# design document 
 ## modules, classes and functions
 - 
 -
