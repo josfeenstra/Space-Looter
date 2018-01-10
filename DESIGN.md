@@ -3,7 +3,7 @@
 ![design document](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/design%20document.png)
 
 ## modules, classes and functions
-NOTE: the inner workings of these classes in terms of functions cannot be written down in full detail,   
+NOTE: the inner workings of these classes in terms of functions cannot be written down in full detail, this is too specific for the current state of the game.
 
 - **class Menu** 
   - Corresponding to menu activity.
