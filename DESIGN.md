@@ -22,8 +22,6 @@
   - Corresponding to menu activity.
   - Function: show and change specific data using listviews.
   
- 
- 
 - **class Play level**
   - Class containing all in-game screen elements.  
   - Manages the input and output of the game class.
@@ -36,7 +34,6 @@
 
 - **class Board**
   - loadFromCSV() | self explanatory 
-  
     - **subclass Tile** 
       - childs:
         - Player
