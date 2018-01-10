@@ -1,4 +1,4 @@
-![design document](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/documentation/design%20document.png)
+![design document](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/design%20document.png)
 # design document 
 ## modules, classes and functions
 - 
@@ -12,7 +12,7 @@
 -
 
 ## APIs / frameworks / plugins
-- If time allows it, Firebase will be used for storing users and their data. 
+- If time allows it, Firebase will be used for storing users and their data (see readme).
 
 ## Data sources 
 - Levels are based upon Thinkfun Games's Treasure Quest. 
