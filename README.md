@@ -19,7 +19,7 @@ Structuur van de app
 de daily puzzle is geschrapt.
 
 ## voorbeeld bord:
-Het doel van het spel is om met de HERO (rode cirkel), de LOOT (gele blokken) naar de uitgang te duwen. Dit doe je doormiddel van met de HERO stappen (omhoog, omlaag, links, rechts) te zetten. Bepaalde blokken kunnen niet verplaatst worden (de links rechts blokken), andere kunnen alleen maar in 1 richting verplaatst worden (horizontaal / verticaal)
+Het doel van het spel is om met de HERO (rode cirkel), de LOOT (gele blokken) naar de uitgang te duwen. Dit doe je doormiddel van met de HERO stappen (omhoog, omlaag, links, rechts) te zetten. Bepaalde blokken kunnen niet verplaatst worden, andere kunnen alleen maar in 1 richting verplaatst worden (horizontaal / verticaal)
 
 ![boardstate](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/voorbeeld%20board.png)
 
