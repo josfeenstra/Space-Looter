@@ -13,11 +13,10 @@ De app bevat de 40 orginele levels, onderverdeelt in 4 catagorieën.
 
 De app houdt je progress bij, en deze progress kan gereset worden. 
 
-Daarnaast verschijnt er elke dag een nieuwe, "Daily puzzle", die de app zal lezen van een door een api verstuurde Json. Van deze zelfde server kan ook de Json voor de oplossing worden aangevraagd, tegen een micro transaction. 
-
 ## sketch
 Structuur van de app
 ![boardstate](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/schets%20alles.png)
+de daily puzzle is geschrapt.
 
 ## voorbeeld bord:
 Het doel van het spel is om met de HERO (rode cirkel), de LOOT (gele blokken) naar de uitgang te duwen. Dit doe je doormiddel van met de HERO stappen (omhoog, omlaag, links, rechts) te zetten. Bepaalde blokken kunnen niet verplaatst worden (de links rechts blokken), andere kunnen alleen maar in 1 richting verplaatst worden (horizontaal / verticaal)
@@ -28,18 +27,23 @@ Het doel van het spel is om met de HERO (rode cirkel), de LOOT (gele blokken) na
 BASIC FUNCTIONALITY
 - maak een hoofdmenu met de knoppen: 
 -- LEVELS (easy, medium, hard, expert) 
--- DAILY
 -- SETTINGS 
-
-BACKEND
-- bepaal de opzet van de board-JSON en de answer-JSON
-- maak een server die deze json's returned bij het geven van een bepaalde request 
 
 GRAPHICS
 - Maak betere sprites voor alle elementen.
 - maak animaties bij het schuiven van elementen. 
 - verbeter de UI
 - verbeter het hoofdmenu
+
+HET SPEL 
+- maak een class datastructuur waarin de functionaliteit van de objecten logisch is.
+- 
+
+## BONUS:
+Als de tijd het toelaat, of als de app minder complex dan gedacht lijkt te zijn worden (een van de) volgende features toegepast: 
+- je progresss wordt gebonden aan een account.  
+- een "create your own level" knop in het hoofdmenu. Spelers kunnen zelf een level maken, deze validaten en opslaan. 
+  - nieuwe levels worden gebonden aan het account, en spelers kunnen de spellen van anderen zien en spelen
 
 
 
