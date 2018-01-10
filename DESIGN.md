@@ -3,6 +3,7 @@
 ![design document](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/design%20document.png)
 
 ## modules, classes and functions
+NOTE: the inner workings of these classes in terms of functions cannot be written down in full detail,   
 
 - **class Menu** 
   - Corresponding to menu activity.
@@ -31,9 +32,11 @@
   - accepts 6 input "buttons": 
     - up, down, left, right, go back, reset 
   - after every input, return if the move succeeded, and the current state of the board 
+  - keeps track of all previous states of the board, up to a limit, so moves can be undone. 
 
 - **class Board**
-  - loadFromCSV() | self explanatory 
+    - manages the state of the board, and, according to input, if and how the board should change 
+     
     - **subclass Tile** 
       - childs:
         - Player
