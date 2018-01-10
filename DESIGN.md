@@ -1,7 +1,16 @@
-![design document](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/design%20document.png)
 # design document 
+
+![design document](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/design%20document.png)
+
 ## modules, classes and functions
-- 
+
+- class Game 
+
+  - class board
+    - class something 
+    - class something else
+  
+
 -
 -
 -
