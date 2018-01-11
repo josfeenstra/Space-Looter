@@ -8,6 +8,8 @@ Het is nu mogelijk om de speler, 'O', met de pijltoetsen te verplaatsen over het
 
 Functies zoals een history om stappen terug te zetten, of een win condition, zijn nog niet geimplementeerd.
 
+Door "datatest" te runnen, gelocaliseerd in de folder scripts, kan dit prototype gespeeld worden. Het is wel van belang dat de Path naar het csv bestand veranderd wordt naar zijn huidige locatie. 
+
 ### screenshots 
 ![afb1](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/cmd1.PNG)![afb2](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/cmd2PNG.PNG)
 
