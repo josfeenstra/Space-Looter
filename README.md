@@ -1,5 +1,16 @@
 # Space-Looter
 
+## TOELICHTING PROTOTYPE PHASE
+
+Gezien de afwijkende nature van deze app in vergelijking met andere, heb ik het onderdeel "prototype" niet opgevat als het framework van de app maken. Daarentegen is voor deze week het daadwerkelijk prototype van het spel gemaakt (zie screenshots). Dit is de core van de app, waar alle andere functies aan ondergeschikt zijn, zoals navigatie. 
+
+Het is nu mogelijk om de speler, 'O', met de pijltoetsen te verplaatsen over het board, en bepaalde blokken te verschuiven. Het spelboard kan geladen en opgeslagen worden met behulp van csv's. 
+
+Functies zoals een history om stappen terug te zetten, of een win condition, zijn nog niet geimplementeerd.
+
+### screenshots 
+![afb1](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/cmd1.PNG)![afb2](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/cmd2PNG.PNG)
+
 
 ## Probleemstelling:
 Analoge puzzel bordspellen, zoals rush hour, moeten met de tijd meegaan om relevant te blijven. Dit soort spellen van bijvoorbeeld Thinkfun of Smart Games zijn vaak erg goed uitgewerkt, en bevatten (40) goed ontworpen "levels.". Helaas zal hier weinig van gebruikt worden, sinds men niet meer bereid is een plastic bordspel mee te nemen in de trein of auto. Men kan immers honderden spellen installeren op hun mobieltje of tablet. 
