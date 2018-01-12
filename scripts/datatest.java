@@ -1,16 +1,12 @@
 /*
-    - data show and input methods
-    - experiment with .csv write and load functionality in java
-
-    maak tile object
-    tile.x
-    tile.y
-    tile.image
-    // default
-    tile.type = empty
 
 
     NOTE VRAAG: CHAR'S EN STRINGS, ik heb nu beunoplossing, maar dat kan beter
+
+    LOGBOEK;
+    maandag - woensdag = ontwikkelen van de conceptmatische app
+    donderdag = begonnen aan de game "op het droge",
+                - het is nu mogelijk om csvs te laden
 
 */
 import java.io.BufferedReader;
@@ -21,10 +17,14 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.Arrays;
+
 /*
     yiels data shared between classes
 */
 class GeneralData {
+
+    // csv characteristic
+    public static final String csvSep = ",";
 
     // static data directions
     public static final int left  = 4;
@@ -48,10 +48,6 @@ class GeneralData {
     static public final char[] symbols      = {empty  , wall  , player  , treasure  , blockH  , blockV  , exit  };
     static public final boolean[] pushables = {false  , false , false   , true      , true    , true    , false };
 
-    // csv characteristic
-    public static final String csvSep = ";";
-
-
     // rewrite print statement
     public void print(String string) {
        System.out.println(string);
@@ -70,185 +66,45 @@ class GeneralData {
         return -1;
     }
 }
+
 /*
-    Tile represents all objects which can be placed as a tile
+    holds all csv type operations
 */
-class Tile extends GeneralData {
+class CsvData extends GeneralData{
 
-  // geometry
-  public int x;
-  public int y;
+    // get current directory
+    private String userDir = System.getProperty("user.dir");
 
-  // characteristics
-  public char type;
-  public int index;
-  public boolean pushable;
+    // store filenames
+    private static final String[] levelFileNames = {
+        "level1",
+        "levelx",
+    };
 
-  // init tile
-  public Tile(int anX, int anY, char aType) {
-      type = aType;
-      index = getIndex(type, symbols);
-      pushable = pushables[index];
-      x = anX;
-      y = anY;
-  }
+    // get paths of filenames
+    public String[] levelPaths = new String[levelFileNames.length];
 
-  /*
-      check if the object can be moved.
-      return -1: techincal error, codewise
-      return 0: cant be moved
-      return 1: player makes a step
-      return 2: player moves something
-  */
-  public int move(int direction, Tile[][] tileset) {
-      // make sure in which direction to check
-      Tile tileCheck;
-      switch(direction) {
-          case left:  tileCheck = tileset[x - 1][y]; // left
-                      break;
-          case down:  tileCheck = tileset[x][y + 1]; // down
-                      break;
-          case right: tileCheck = tileset[x + 1][y]; // right
-                      break;
-          case up:    tileCheck = tileset[x][y - 1]; // up
-                      break;
-          default:    return -1;
-      }
-      // if i can move, move
-      if (tileCheck.type == empty) {
-          print("possible!");
+    // fill levelpaths as constructor
+    public CsvData() {
 
-          // switch the type of both blocks
-          char temptype = type;
-          changeType(tileCheck.type);
-          tileCheck.changeType(temptype);
+        for (int i = 0; i < levelFileNames.length; i++) {
+            String name = levelFileNames[i];
+            levelPaths[i] = userDir + "\\" + name + ".csv";
+        }
+    }
 
-          //
-          return 1;
-      }
-      // else, if i am the player, and the other block is movable, move block
-      else if (type == player && tileCheck.pushable) {
-          // dont move a block if its against the rules
-          if (!(tileCheck.type == blockH && (direction == up   || direction == down  )) &&
-              !(tileCheck.type == blockV && (direction == left || direction == right))) {
+    // use loadfromCSV with the arrording level path
+    public String getLevel(int index) {
 
-              // if the block can be move, move it. recurse, rejoice!
-              if (tileCheck.move(direction, tileset) > 0) {
-                  print("its" + tileCheck.type);
+        // test if index is valid
+        if (index < 0 || index >= levelPaths.length) {return null;}
 
-                  // switch the type of both blocks
-                  char temptype = type;
-                  changeType(tileCheck.type);
-                  tileCheck.changeType(temptype);
+        // if all is good, select and load according level
+        return loadFromCSV(levelPaths[index]);
+    }
 
-                  return 2;
-              }
-          }
-      }
-
-      // if code arrives at this point, move cannot be made
-      print("impossible...");
-      return 0;
-  }
-
-  public void changeType(char aType) {
-      type = aType;
-      index = getIndex(type, symbols);
-      pushable = pushables[index];
-  }
-}
-
-
-
-class Board extends GeneralData {
-
-   // all dem variables
-   public Tile[][] tile;
-   public char[][] tilec;
-   public int height;
-   public int width;
-
-   // memory data
-   private static final int HISTORY_LIM = 1000;
-   String[] boardHistory = new String[HISTORY_LIM];
-   public int boardHistoryState = 0;
-
-   // make board
-   public Board(int aHeight, int aWidth) {
-       height = aHeight;
-       width = aWidth;
-
-       // instanciate board
-       tilec = new char[width][height];
-       tile = new Tile[width][height];
-   }
-
-   // fill board with data from csv
-   public boolean loadFromString(String boardData) {
-       // keep track of what 'coordinate' is currently being read.
-       int Xread = 0;
-       int Yread = 0;
-
-       // get necesairy values
-       int boardLength = boardData.length();
-       char csvSepChar = csvSep.charAt(0);
-
-       // read the boarddata per character
-       for (int i = 0; i < boardLength; i++) {
-
-           // read the current char
-           char c = boardData.charAt(i);
-
-           // test if the reader is still within bounds
-           if (Xread >= width || Yread >= height) {
-               // operation failed
-               print("Failed: csvString does not match map coordinates.");
-               return false;
-           }
-
-           // every time a ';' is read, increment x
-           if (c == csvSepChar) {
-               Xread += 1;
-           }
-
-           // every time a '\n' is read, increment y, reset x
-           else if (c == '\n') {
-               Xread = 0;
-               Yread += 1;
-           }
-
-           // otherwise assign 'c' to the tile array
-           else {
-               tilec[Xread][Yread] = c;
-               tile[Xread][Yread] = new Tile(Xread, Yread, c);
-           }
-       }
-
-       // test
-       return true;
-   }
-
-   public String saveToString() {
-       // init boardData
-       String boardData = "";
-
-       // go trough all objects
-       for (int y = 0; y < height; y += 1) {
-           // begin string
-
-           for (int x = 0; x < width; x += 1) {
-               // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-           }
-       }
-
-
-
-
-       return boardData;
-   }
-
-   // read a csv file, write it into a single string
-   public String loadFromCSV(String path) {
+    // read a csv file, write it into a single string
+    public String loadFromCSV(String path) {
 
        String rawLine = "";
        String fineLine = "";
@@ -302,6 +158,202 @@ class Board extends GeneralData {
            return boardData;
     }
 
+}
+
+/*
+    Tile represents all objects which can be placed as a tile
+*/
+class Tile extends GeneralData {
+
+  // geometry
+  public int x;
+  public int y;
+
+  // characteristics
+  public char type;
+  public int index;
+  public boolean pushable;
+
+  // init tile
+  public Tile(int anX, int anY, char aType) {
+      x = anX;
+      y = anY;
+      changeType(aType);
+  }
+
+  /*
+      check if the object can be moved.
+      return -1: techincal error, codewise
+      return 0: cant be moved
+      return 1: player makes a step
+      return 2: player moves something
+      return 3: treasure is pushed outside of the thing
+  */
+  public int move(int direction, Tile[][] tileset) {
+      // make sure in which direction to check
+      Tile tileCheck;
+      switch(direction) {
+          case left:  tileCheck = tileset[x - 1][y]; // left
+                      break;
+          case down:  tileCheck = tileset[x][y + 1]; // down
+                      break;
+          case right: tileCheck = tileset[x + 1][y]; // right
+                      break;
+          case up:    tileCheck = tileset[x][y - 1]; // up
+                      break;
+          default:    return -1;
+      }
+      // if i can move, move
+      if (tileCheck.type == empty) {
+
+          // switch the type of both blocks
+          char temptype = type;
+          changeType(tileCheck.type);
+          tileCheck.changeType(temptype);
+
+          //
+          return 1;
+      }
+      // else, if i am the player, and the other block is movable, move block
+      else if (type == player && tileCheck.pushable) {
+          // dont move a block if its against the rules
+          if (!(tileCheck.type == blockH && (direction == up   || direction == down  )) &&
+              !(tileCheck.type == blockV && (direction == left || direction == right))) {
+
+              // if the block can be move, move it. recurse, rejoice!
+              int response = tileCheck.move(direction, tileset);
+              if (response > 0) {
+
+                  // switch the type of both blocks
+                  char temptype = type;
+                  changeType(tileCheck.type);
+                  tileCheck.changeType(temptype);
+
+                  return response + 1;
+              }
+          }
+      }
+      // if the treasure if pushed in the exit delete the block and move the player
+      else if (type == treasure && tileCheck.type == exit) {
+          // dont change the other's type, but do change your own
+          changeType(empty);
+          return 2;
+      }
+
+      // if code arrives at this point, move cannot be made
+      return 0;
+  }
+
+  // changes the type of the Tile, and all subsequential values
+  public void changeType(char aType) {
+      type = aType;
+      index = getIndex(type, symbols);
+      pushable = pushables[index];
+  }
+}
+
+/*
+    Board represents the joined effort of all tiles
+*/
+class Board extends GeneralData {
+
+   // all dem variables
+   public Tile[][] tile;
+   public char[][] tilec;
+   public int height;
+   public int width;
+
+   // memory data
+   private static final int HISTORY_LIM = 1000;
+   private String[] boardHistory;
+   public int boardHistoryState;
+
+   // make board
+   public Board(int aWidth, int aHeight) {
+       width = aWidth;
+       height = aHeight;
+
+       // instanciate board
+       // tilec = new char[width][height];
+       tile = new Tile[width][height];
+
+       // configure history
+       boardHistory = new String[HISTORY_LIM];
+       boardHistoryState = 0;
+   }
+
+   // fill board with data from csv
+   public boolean loadFromString(String boardData) {
+       // keep track of what 'coordinate' is currently being read.
+       int Xread = 0;
+       int Yread = 0;
+
+       // get necesairy values
+       int boardLength = boardData.length();
+
+       // read the boarddata per character
+       for (int i = 0; i < boardLength; i++) {
+
+           // read the current char
+           char c = boardData.charAt(i);
+
+           // test if the reader is still within bounds
+           if (Xread >= width || Yread >= height) {
+               // operation failed
+               print("Failed: csvString does not match map coordinates.");
+               return false;
+           }
+
+           // every time a ';' is read, increment x
+           if (c == csvSep.charAt(0)) {
+               Xread += 1;
+           }
+
+           // every time a '\n' is read, increment y, reset x
+           else if (c == '\n') {
+               Xread = 0;
+               Yread += 1;
+           }
+
+           // otherwise assign 'c' to the tile array
+           else {
+               tile[Xread][Yread] = new Tile(Xread, Yread, c);
+           }
+       }
+
+       // save the initial state
+       boardHistory[boardHistoryState] = saveToString();
+
+       // success
+       return true;
+   }
+
+   // save the current boardstate to a string
+   public String saveToString() {
+       // init boardData
+       String boardData = "";
+
+       // go trough all objects
+       for (int y = 0; y < height; y += 1) {
+           // begin string
+
+           for (int x = 0; x < width; x += 1) {
+               // add the character
+               boardData += "" + tile[x][y].type;
+
+               // add csvseparator, or \n, depending on if we are at the end
+               if (x >= width - 1) {
+                   boardData += "\n";
+               }
+               else {
+                   boardData += "" + csvSep;
+               }
+
+           }
+       }
+       return boardData;
+   }
+
    // print the state of the board
    public void printState() {
        // whitespace
@@ -336,6 +388,7 @@ class Board extends GeneralData {
        }
    }
 
+   // find an object
    private Tile getObjectByType(char type) {
        // go trough all objects
        for (int y = 0; y < height; y += 1) {
@@ -356,6 +409,8 @@ class Board extends GeneralData {
 
    // redirect raw game input to other functions of board class
    public int gameInput(int input) {
+
+       // save response
        switch (input) {
            case left:   print("left");
                         return movePlayer(left);
@@ -366,11 +421,6 @@ class Board extends GeneralData {
            case up:     print("up");
                         return movePlayer(up);
            case back:   print("back");
-                        // make sure its possible
-                        if (boardHistoryState <= 0) {
-                            print("can't go back");
-                            return -1;
-                        }
                         return boardPreviousState(boardHistoryState - 1);
            case reset:  print("reset");
                         return boardPreviousState(0);
@@ -386,50 +436,112 @@ class Board extends GeneralData {
        // get player object
        Tile plr = getObjectByType(player);
 
-       // quit if the object couldnt be found
+       // quit if the player couldnt be found
        if (plr == null) {return -1;}
 
+       // before moving, save boardstate
+       boardHistory[boardHistoryState] = saveToString();
+
        // try to move player
-       plr.move(direction, tile);
-       return 1;
+       int response = plr.move(direction, tile);
+
+       // if a change has occured
+       if (response > 0) {
+           // add to history
+           boardHistoryState += 1;
+
+           // save this new state
+           boardHistory[boardHistoryState] = saveToString();
+       }
+
+       return response;
    }
 
    // "back" & "reset" input
    public int boardPreviousState(int aState) {
-       boardHistory = new String[HISTORY_LIM];
-       return 0;
+       // make sure its possible
+       if (boardHistoryState <= 0) {
+           print("can't go back");
+           return 10;
+       }
+
+       // set the new boardstate integer, and load its corresponding boardstate
+       boardHistoryState = aState;
+       loadFromString(boardHistory[boardHistoryState]);
+       return 11;
    }
 
+   // test if winconditions are met
+   public boolean isGameWon() {
+       // if a single piece of treasure cant be found
+       if (getObjectByType(treasure) == null) {
+           return true;
+       }
+       return false;
+   }
 }
 
-
-// controls for the game
+/*
+    datatest is the control module
+*/
 class datatest {
    public static void main(String[] args) {
 
-     // construct board class
-     Board b = new Board(9, 9);
+     // construct board class, csv read class & scanner class
+     Board b     = new Board(9, 9);
+     CsvData csv = new CsvData();
+     Scanner sc  = new Scanner(System.in);
 
-     // fill a board with csv file
-     String path = "C:\\Users\\Jos\\Dropbox\\SpaceLooter\\Test\\levelx.csv";
+     // ask for a level
+     b.print("select level (0 of 1):");
+     int lvl = sc.nextInt();
 
      // read board data out of csv
-     String csvStringified = b.loadFromCSV(path);
-     b.loadFromString(csvStringified);
+     String aLevel = csv.getLevel(lvl);
+
+     // then load that into the board
+     b.loadFromString(aLevel);
+     String test = b.saveToString();
+     b.print(test + "\n");
 
      // first test
      b.printState();
 
      // prompt user for next move
-     Scanner sc = new Scanner(System.in);
      while(true) {
          int i = sc.nextInt();
 
          // process input
-         b.gameInput(i);
+         int response = b.gameInput(i);
+
+         // sound feedback
+         switch(response) {
+             case -1:   b.print("error");
+                        break;
+             case 0:    b.print("*tok*");
+                        break;
+             case 1:    b.print("*step...*");
+                        break;
+             case 2:    b.print("*schhuif...*");
+                        break;
+             case 3:    b.print("*CA-CHING!*");
+                        break;
+             case 10:   b.print("Wha wha");
+                        break;
+             case 11:   b.print("Whoooshh");
+                        break;
+
+         }
 
          // show changed state
          b.printState();
+
+         // check if the game is won
+         if (b.isGameWon()) {
+             b.print("YOU WON THE GAME!!");
+             return;
+         }
+
      }
 
    }
