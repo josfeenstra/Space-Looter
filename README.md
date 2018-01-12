@@ -7,8 +7,9 @@ Gezien de afwijkende nature van deze app in vergelijking met andere, heb ik het 
 Het is nu mogelijk om de speler, 'O', met de pijltoetsen te verplaatsen over het board, en bepaalde blokken te verschuiven. Het spelboard kan geladen en opgeslagen worden met behulp van csv's. 
 
 Functies zoals een history om stappen terug te zetten, of een win condition, zijn nog niet geimplementeerd.
-
 Door "datatest" te runnen, gelocaliseerd in de folder scripts, kan dit prototype gespeeld worden. Het is wel van belang dat de Path naar het csv bestand veranderd wordt naar zijn huidige locatie. 
+
+EDIT: de complete functionaliteit van het prototype spel zijn nu wel geimplementeerd, het is ook niet meer nodig om manual de path te veranderen. De prototype folder bevat dit complete script. to run: >java prototype
 
 ### screenshots 
 ![afb1](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/cmd1.PNG)![afb2](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/cmd2PNG.PNG)
