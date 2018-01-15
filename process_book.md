@@ -1,7 +1,10 @@
 # process book 
 Jos Feenstra 
+
 Architecture Student TU Delft 
+
 Software Developer Student UvA
+
 student nr. 4465768 
 
 ## UP TO DATE TODO / DONE 
