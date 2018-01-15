@@ -15,8 +15,6 @@ WEEK 2 MAANDAG
 
 Donderdag middag / vrijdag ochtend zal de game in app vorm volledig speelbaar zijn, met werkende level select & progress. 
 
-EDIT: ziek, niet fysiek aanwezig 
-
 IMPLEMENTED:
 - History 	De board class houdt een geschiedenis bij, en er kan dus een stap terug gezet worden. 
 - Load 		Levels gecreeerd met excel (csv) kunnen correct worden ingeladen. 
