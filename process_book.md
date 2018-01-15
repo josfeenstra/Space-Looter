@@ -75,9 +75,10 @@ WEEK 4: VRIJDAG
 ### maandag 15 jan 
 Hoewel ik ziek thuis ben, heb ik stevig voortgang geboekt. In de ochtend heb ik de laatste paar problemen met de prototype game kunnen oplossen, waardoor ik dit hoofdstuk van het project kon afsluiten. In plaats van dat ik de objecten van coordinaat laat wisselen, wissel ik enkel het type om van de twee objecten, terwijl ze dus op dezelfde coordinaten blijven staan. Deze conclusie leidde tot het kunnen herschrijven van veel code, waardoor het nu een stuk duidelijker en lichter werkt.
 
-In de middag...
+In de middag vooral geworsteld met de stommigheden van android studio. Waarom worden afbeeldingen één voor één ingeladen, waarom moeten er 30 verschillende type afbeeldingen worden aangemaakt per toevoeging? Het spel zelf was zo gemaakt, maar dit soort kleine hickups gaan waarschijnlijk zon 90% van de tijd in beslag nemen. Achja, morgen weer een dag.   
 
 Ik gok wel dat mijn plannen voor deze week iets te ambitieus zijn, maar ik zet graag hoog in. We zullen zien waar het schip strandt. 
+
 ### dinsdag 16 jan
 
 ### woensdag 17 jan 
