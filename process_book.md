@@ -34,24 +34,39 @@ TODO (in order of significance):
 - Polish		Make buttons light up & look nicer, add and handle sounds
 
 WEEK 2: DINSDAG
+
 WEEK 2: WOENSDAG 
+
 WEEK 2: DONDERDAG
+
 WEEK 2: VRIJDAG
+
 WEEK 3: MAANDAG 
+
 Deze week staat in het teken van het toevoegen van extra features, zoals settings, een account, make your own level, enz. Na donderdag avond / vrijdag ochtend zullen er geen extra features meer toegevoegd worden. De features die ik nu in gedachte heb, gesorteerd op basis van prioriteiten:
 - settings
 - Make your own level & play a custom level
 - Login, Show my levels, Show all custom levels. 
 - User created levels 
+
 WEEK 3: DINSDAG
+
 WEEK 3: WOENSDAG 
+
 WEEK 3: DONDERDAG
+
 WEEK 3: VRIJDAG
+
 WEEK 4: MAANDAG 
+
 Deze week staat in het teken van het afronden, debuggen en stroomlijnen van de app. Overbodige code wordt verwijderd, de app wordt werkzaam gemaakt voor landscape mode en tablet views, en zal er flawless uitzien. Ook zullen de presentatie - elementen gemaakt worden, zoals de product video & ppt / website.
+
 WEEK 4: DINSDAG
+
 WEEK 4: WOENSDAG 
+
 WEEK 4: DONDERDAG
+
 WEEK 4: VRIJDAG
 
 
