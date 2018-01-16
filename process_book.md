@@ -33,6 +33,8 @@ TODO (in order of significance):
 
 WEEK 2: DINSDAG
 
+Stuck on the little things. Opnieuw android studio project aangemaakt. Probeer classes op correcte manier in te laden, en de folder aan csv's op te roepen die elders opgeslagen staan, weinig succes. Misschien moet ik de csv's omschrijven tot 1 Json, en die ergens hardcoden. Dan moet er eerst een programma geschreven worden om buiten android studio om de 40 levels om te zetten in 1 json. 
+
 WEEK 2: WOENSDAG 
 
 WEEK 2: DONDERDAG
