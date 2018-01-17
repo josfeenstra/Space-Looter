@@ -9,27 +9,26 @@ student nr. 4465768
 
 ## UP TO DATE TODO / DONE 
 
-
-## Daily standup
-WEEK 2 MAANDAG
-
-Donderdag middag / vrijdag ochtend zal de game in app vorm volledig speelbaar zijn, met werkende level select & progress. 
-
 IMPLEMENTED:
 - History 	De board class houdt een geschiedenis bij, en er kan dus een stap terug gezet worden. 
 - Load 		Levels gecreeerd met excel (csv) kunnen correct worden ingeladen. 
 - Variation	De afmetingen van het board worden aangepast op de ingeladen csv. 
 - Win condition	Het spel checked of er aan de wincondities wordt voldaan. 
 - Prototype	Het spel is volledig speelbaar in de command prompt. 
-
-TODO (in order of significance): 
 - App 		Maak een app project aan op android studio DONE
-- Prepare 	Load all sprites, csv’s, fonts, scripts and other necessary components.
+- Prepare 	Load all sprites, csv’s, scripts and other necessary components.
 - Output 	Zorg dat de Tile array van de Board class omgezet wordt tot een gridview van sprite afbeeldingen.
 - Input 		Zorg dat de knoppen de juiste informatie naar de game class stuurt 
-- Navigatie 	build menu’s, handle level selects.
+
+TODO (in order of significance): 
+- Navigatie 	build menu’s, handle level selects -> af in primaire vorm
 - Progress	Handle the completion of a board, save it as data, and show this data
-- Polish		Make buttons light up & look nicer, add and handle sounds
+- Polish		Make buttons light up & look nicer, use special fonts, add and handle sounds
+
+## Daily standup
+WEEK 2 MAANDAG
+
+Donderdag middag / vrijdag ochtend zal de game in app vorm volledig speelbaar zijn, met werkende level select & progress. 
 
 WEEK 2: DINSDAG
 
@@ -82,10 +81,16 @@ In de middag vooral geworsteld met de stommigheden van android studio. Waarom wo
 Ik gok wel dat mijn plannen voor deze week iets te ambitieus zijn, maar ik zet graag hoog in. We zullen zien waar het schip strandt. 
 
 ### dinsdag 16 jan
-
 Stuck on the little things. Opnieuw android studio project aangemaakt. Probeer classes op correcte manier in te laden, en de folder aan csv's op te roepen die elders opgeslagen staan, weinig succes. Misschien moet ik de csv's omschrijven tot 1 Json, en die ergens hardcoden. Dan moet er eerst een programma geschreven worden om buiten android studio om de 40 levels om te zetten in 1 json. 
 
 ### woensdag 17 jan 
+Ok, de de plannen voor deze week waren dus niet té ambtieus. Vandaag is veel vooruitgang geboekt. De game zelf is nu volledig speelbaar, met alle gewilde functionaliteit en een enigzins correcte weergave (zie screenshots). De csv's lezen bleek geen probleem te zijn, de CSV lees class moest alleen omgebouwd worden. Deze werkt prima buiten android studio, maar het is logisch dat je dingen als "huidige werkfolder" niet op kan roepen in android studio. Na wat googelen bleek het gewoon mogelijk te zijn om de csv's in een raw folder de plaatsen, en deze vervolgens in de res folder neer te zetten. 
+
+Alle code van het buiten android studio om gebouwde prototype zijn ingeladen als de GameCore class. Ik hou did voorlopig graag centraal om duidelijk onderscheid te maken tussen de java files met een corresponderende activity, en de ondersteunende java files. 
+
+Ook is het gelukt alle sprites (afbeeldingen) in een gridview te plaatsen. de GameCore zend keurig een array van indexen uit (getallen 0 tm 7), waar de custom base adapter vervolgens raad mee weet, en de correcte sprite mee kiest. Wel moet er nog gewerkt worden aan de correcte grootte en positionering van deze afbeeldingen, op dit moment stretchen of krimpen de afbeeldingen op semi-onverklaarbare wijze.
+
+Verder werken de knoppen, kan het board "teruggespoeld" worden indien een foute move is gemaakt, en wordt bij het voltooien van het spel correct gereageerd. Wat nu nog gedaan moet worden is vooral in de trend van polish (mooi maken, user feedback, settings), en de game waterdicht maken. 
 
 ### donderdag 18 jan 
 
