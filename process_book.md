@@ -19,9 +19,9 @@ IMPLEMENTED:
 - Prepare 	Load all sprites, csv’s, scripts and other necessary components.
 - Output 	Zorg dat de Tile array van de Board class omgezet wordt tot een gridview van sprite afbeeldingen.
 - Input 		Zorg dat de knoppen de juiste informatie naar de game class stuurt 
+- Navigatie 	build menu’s, handle level selects -> af maar niet mooi
 
 TODO (in order of significance): 
-- Navigatie 	build menu’s, handle level selects -> af in primaire vorm
 - Progress	Handle the completion of a board, save it as data, and show this data
 - Polish		Make buttons light up & look nicer, use special fonts, add and handle sounds
 
@@ -93,6 +93,11 @@ Ook is het gelukt alle sprites (afbeeldingen) in een gridview te plaatsen. de Ga
 Verder werken de knoppen, kan het board "teruggespoeld" worden indien een foute move is gemaakt, en wordt bij het voltooien van het spel correct gereageerd. Wat nu nog gedaan moet worden is vooral in de trend van polish (mooi maken, user feedback, settings), en de game waterdicht maken. 
 
 ### donderdag 18 jan 
+
+"Donderdag middag / vrijdag ochtend zal de game in app vorm volledig speelbaar zijn, met werkende level select & progress. 
+". Dit melde ik maandag, en dit is gelukt. (zie screenshots). Er zitten nog ogen en haken aan de app, maar in principe is alle basiscontent af. De app bevat nu netjes een hoofd- en submenu, waarmee alle 40 levels bereikt kunnen worden. Er is gewerkt met dynamische popup listviews, en deze zijn zo min mogelijk gehardcode. Alleen de "range" van levels zijn geharcode, zoals "11 - 20". Level id's worden opgevraagd met GetInstance. Wel is dit dus afhankelijk van de namen van de csv files, dus er moet op gelet worden dat deze niet worden veranderd. Het zorgt er wel voor dat het updaten van de levels erg makkelijk is. Als we nu besluiten om 5 extra expert levels toe te voegen, hoef ik alleen get getal 40 in 45 te veranderen, en de levels 41 tot 45 toevoegen aan de raw folder. 
+
+Het viel me op dat het bekende probleem van het schermm roteren het spel in de war brengt. Het straight up reset. Ik hou gelukkig alle data goed bij, maar de GameCore class moet dus nog wel slim gaan reageren op deze veranderingen met wat OnRestore() acties. 
 
 ### vrijdag 19 jan 
 
