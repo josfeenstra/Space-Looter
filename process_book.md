@@ -101,6 +101,20 @@ Het viel me op dat het bekende probleem van het schermm roteren het spel in de w
 
 ### vrijdag 19 jan 
 
+Vandaag wat extra UI functionaliteit toegevoegd. De "terug" knop is eindelijk goed gewired naar het vorige scherm, Er is een mooi level complete scherm met opties, en de titel van het level wordt nu in-game weergegeven. 
+
+Niet erg veel nuttige feedback gekregen van de groep. 
+
+De navigatie kan beter / meer secure. Ik weet niet of de methode die ik nu gebruik de beste zijn. Ook zijn er functies ge-copy-paste-d, en dat mag natuurlijk niet. ik kan het methods maken van een algemene class, maar ik weet niet wat de netste manier is om dit volgens java - conventies te doen. Not pressing matters tho, in de loop van komende week zal ik dit vragen.
+
+huidige vragen: 
+vraag: layout.weight=1
+       wat doet dit? 
+
+vraag: tips over datastructuur / waar zet ik vaak gebruikte functies die ik in meedere classes gebruik?
+
+vraag: is de navigatiestructuur die ik nu gebruik correct / foolproof? 
+
 ## LOG WEEK 3
 
 ### maandag 15 jan 
