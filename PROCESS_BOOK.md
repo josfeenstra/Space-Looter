@@ -119,7 +119,15 @@ vraag: is de navigatiestructuur die ik nu gebruik correct / foolproof?
 
 ### maandag 15 jan 
 
+Het begint een soort patroon te worden om de week te beginnen met buggs die me vasthouden. Ditmaal gaat het over het inladen van fonts, afbeeldingen en andere mooimakers. Android studio is daar niet de makkelijkste in. 
+
+Wat wel gelukt is, is progress. Ik kwam spontaan op het idee om de levels 'unlockable' te maken, zodat het leuker wordt om vooruitgang te boeken in het spel. De progress wordt nu keurig opgeslagen als preferences, een boolean Completion, en een integer number of steps. Dat laatste ga ik morgen uitvogelen. 
+
 ### dinsdag 16 jan
+
+Het is gelukt om het aantal stappen waarin je het level hebt voltooid op te slaan, en te tonen bij de level select. Dit wil ik uiteindelijk om gaan zetten in een 1 tot 5 sterren beoordeling, gebaseerd op de bijgeleverde oplossingen van het fisieke spel. Hier is een begin aan gemaakt, maar het valt niet mee om "aan en uit sterren" keurig naast elkaar op te stellen. 
+
+EDIT: oeps, maandag & dinsdag vergeten te committen
 
 ### woensdag 17 jan 
 
