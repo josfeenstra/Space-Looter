@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="board_height">400dp</dimen>
+    <dimen name="width">40dp</dimen>
+    <dimen name="height">40dp</dimen>
+</resources>
