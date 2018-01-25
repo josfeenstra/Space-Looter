@@ -131,7 +131,15 @@ EDIT: oeps, maandag & dinsdag vergeten te committen
 
 ### woensdag 17 jan 
 
+Het werd eens tijd dat de app een facelift kreeg. Niet alleen voor de leuk, maar als de app er al wat meer "final" uit begint te zien, worden de delen waar nog aan gewerkt moeten worden duidelijker. Ik besloot daarom vandaag te besteden aan het maken van een mooie menu titel, icoon, achtergronden en lettertype / knoppen. Ik ben erg tevreden over het eindresultaat. Het openingsscherm is uitnodigend, en de app begint eindelijk, naast substantie, ook vorm te krijgen. 
+
 ### donderdag 18 jan 
+
+Vandaag heb ik alle features die ik nog graag wilde toevoegen, toegevoegd. Er kunnen nu zelfgemaakte levels gecreerd en gespeeld worden. Het stoeien met de interface van android was uiteindelijk lastiger dan de daadwerkelijke back-end schrijven. Doordat de gamecore een redelijk solide element is, kon ik veel van zijn utilility gebruiken om bijvoorbeeld snel te checken of de user al een uitgang heeft toegevoegd aan het level, en zo niet om tegen hem/haar te schreeuwen. 
+
+de interface schiet nog steeds alle kanten op. Komende week kan helemaal in het teken staan van de in-game interface en boardview te fixen. 
+
+ALs ik nog wat tijd over heb morgen, zal ik het eerder genoemde "rating system" toepassen.
 
 ### vrijdag 19 jan 
 
