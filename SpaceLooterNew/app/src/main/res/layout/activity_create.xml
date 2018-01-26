@@ -39,6 +39,17 @@
                 android:id="@+id/buttonCreateSave"
                 android:layout_height="wrap_content"
                 android:text="Save" />
+
+            <TextView
+                android:id="@+id/boardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/entsans"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textColorLink="@android:color/background_light" />
         </GridLayout>
 
         <GridView
@@ -48,19 +59,12 @@
 
         </GridView>
 
-        <TextView
-            android:id="@+id/boardTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/entsans"
-            android:text=""
-            android:textColor="@android:color/white"
-            android:textColorLink="@android:color/background_light" />
-
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <Spinner
                 android:id="@+id/spinnerItemSelect"

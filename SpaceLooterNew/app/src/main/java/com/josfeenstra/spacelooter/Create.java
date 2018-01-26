@@ -90,7 +90,7 @@ public class Create extends AppCompatActivity {
         itemSelect = findViewById(R.id.spinnerItemSelect);
         SpinnerAdapter adapter=new SpinnerAdapter(this, R.layout.spinner_item, R.id.img,list);
         itemSelect.setAdapter(adapter);
-        //itemSelect.setVisibility(0);
+        itemSelect.setVisibility(View.GONE);
     }
 
     /*
@@ -278,6 +278,8 @@ public class Create extends AppCompatActivity {
         TextView boardTitle = findViewById(R.id.boardTitle);
         boardTitle.setText(newLevelName);
 
+        // show the item select spinner
+        itemSelect.setVisibility(View.VISIBLE);
     }
 
     // tile click, find spinner's selection, change this tile to that sprite, update board and boardview
@@ -424,8 +426,6 @@ public class Create extends AppCompatActivity {
 
         }
     }
-
-
 
     /*
         button 1:

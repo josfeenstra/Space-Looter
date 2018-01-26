@@ -2,19 +2,22 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:backgroundTintMode="add"
+    android:background="@drawable/space_purple_nebula_small"
     android:backgroundTint="@color/colorPrimaryDark"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/popupTitle"
             android:layout_width="match_parent"
-            android:fontFamily="@font/entsans"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/entsans"
+            android:padding="5dp"
             android:text="Title"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
