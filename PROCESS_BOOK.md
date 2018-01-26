@@ -7,70 +7,6 @@ Software Developer Student UvA
 
 student nr. 4465768 
 
-## UP TO DATE TODO / DONE 
-
-IMPLEMENTED:
-- History 	De board class houdt een geschiedenis bij, en er kan dus een stap terug gezet worden. 
-- Load 		Levels gecreeerd met excel (csv) kunnen correct worden ingeladen. 
-- Variation	De afmetingen van het board worden aangepast op de ingeladen csv. 
-- Win condition	Het spel checked of er aan de wincondities wordt voldaan. 
-- Prototype	Het spel is volledig speelbaar in de command prompt. 
-- App 		Maak een app project aan op android studio DONE
-- Prepare 	Load all sprites, csv’s, scripts and other necessary components.
-- Output 	Zorg dat de Tile array van de Board class omgezet wordt tot een gridview van sprite afbeeldingen.
-- Input 		Zorg dat de knoppen de juiste informatie naar de game class stuurt 
-- Navigatie 	build menu’s, handle level selects -> af maar niet mooi
-
-TODO (in order of significance): 
-- Progress	Handle the completion of a board, save it as data, and show this data
-- Polish		Make buttons light up & look nicer, use special fonts, add and handle sounds
-
-## Daily standup
-WEEK 2 MAANDAG
-
-Donderdag middag / vrijdag ochtend zal de game in app vorm volledig speelbaar zijn, met werkende level select & progress. 
-
-WEEK 2: DINSDAG
-
-zie logtekst van maandag
-
-WEEK 2: WOENSDAG 
-
-WEEK 2: DONDERDAG
-
-WEEK 2: VRIJDAG
-
-WEEK 3: MAANDAG 
-
-Deze week staat in het teken van het toevoegen van extra features, zoals settings, een account, make your own level, enz. Na donderdag avond / vrijdag ochtend zullen er geen extra features meer toegevoegd worden. De features die ik nu in gedachte heb, gesorteerd op basis van prioriteiten:
-- settings
-- Make your own level & play a custom level
-- Login, Show my levels, Show all custom levels. 
-- User created levels 
-
-WEEK 3: DINSDAG
-
-WEEK 3: WOENSDAG 
-
-WEEK 3: DONDERDAG
-
-WEEK 3: VRIJDAG
-
-WEEK 4: MAANDAG 
-
-Deze week staat in het teken van het afronden, debuggen en stroomlijnen van de app. Overbodige code wordt verwijderd, de app wordt werkzaam gemaakt voor landscape mode en tablet views, en zal er flawless uitzien. Ook zullen de presentatie - elementen gemaakt worden, zoals de product video & ppt / website.
-
-WEEK 4: DINSDAG
-
-WEEK 4: WOENSDAG 
-
-WEEK 4: DONDERDAG
-
-WEEK 4: VRIJDAG
-
-
-
-
 ## LOG WEEK 2
 
 ### maandag 15 jan 
@@ -131,7 +67,15 @@ EDIT: oeps, maandag & dinsdag vergeten te committen
 
 ### woensdag 17 jan 
 
+Het werd eens tijd dat de app een facelift kreeg. Niet alleen voor de leuk, maar als de app er al wat meer "final" uit begint te zien, worden de delen waar nog aan gewerkt moeten worden duidelijker. Ik besloot daarom vandaag te besteden aan het maken van een mooie menu titel, icoon, achtergronden en lettertype / knoppen. Ik ben erg tevreden over het eindresultaat. Het openingsscherm is uitnodigend, en de app begint eindelijk, naast substantie, ook vorm te krijgen. 
+
 ### donderdag 18 jan 
+
+Vandaag heb ik alle features die ik nog graag wilde toevoegen, toegevoegd. Er kunnen nu zelfgemaakte levels gecreerd en gespeeld worden. Het stoeien met de interface van android was uiteindelijk lastiger dan de daadwerkelijke back-end schrijven. Doordat de gamecore een redelijk solide element is, kon ik veel van zijn utilility gebruiken om bijvoorbeeld snel te checken of de user al een uitgang heeft toegevoegd aan het level, en zo niet om tegen hem/haar te schreeuwen. 
+
+de interface schiet nog steeds alle kanten op. Komende week kan helemaal in het teken staan van de in-game interface en boardview te fixen. 
+
+ALs ik nog wat tijd over heb morgen, zal ik het eerder genoemde "rating system" toepassen.
 
 ### vrijdag 19 jan 
 
