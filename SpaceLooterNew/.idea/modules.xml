@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SpaceLooter.iml" filepath="$PROJECT_DIR$/SpaceLooter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpaceLooterNew.iml" filepath="$PROJECT_DIR$/SpaceLooterNew.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

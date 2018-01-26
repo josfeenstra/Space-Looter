@@ -17,6 +17,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -46,6 +47,9 @@ public class Menu extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
+            // add animation
+            v.startAnimation(AnimationUtils.loadAnimation(Menu.this, R.anim.image_click));
+
             // goto the submenu
             Intent intent = new Intent(Menu.this, Submenu.class);
             startActivity(intent);
@@ -55,8 +59,12 @@ public class Menu extends AppCompatActivity {
 
     // button 2
     public class onCreateLevelClick implements View.OnClickListener {
+
         @Override
         public void onClick(View v) {
+
+            // add animation
+            v.startAnimation(AnimationUtils.loadAnimation(Menu.this, R.anim.image_click));
 
             // goto the submenu
             Intent intent = new Intent(Menu.this, Create.class);
@@ -72,6 +80,9 @@ public class Menu extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+
+            // add animation
+            v.startAnimation(AnimationUtils.loadAnimation(Menu.this, R.anim.image_click));
 
             AlertDialog.Builder suBuilder = new AlertDialog.Builder(Menu.this);
             suBuilder.setMessage("RESET PROGESS?").setPositiveButton("YES", dialogResetClickListener)

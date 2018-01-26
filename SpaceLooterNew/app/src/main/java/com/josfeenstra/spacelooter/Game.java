@@ -33,6 +33,8 @@ public class Game extends AppCompatActivity {
     AlertDialog dialog;
     GridView boardView;
 
+    boolean isCustom;
+
     CustomAdapter boardViewAdapter;
     Board b;
     CsvReader csv;
@@ -52,13 +54,8 @@ public class Game extends AppCompatActivity {
         b     = new Board();
         csv   = new CsvReader();
 
-        // read the corresponding csv file
-        int selectedLevel = getLevel();
-        Log.d("tag", "" + selectedLevel);
-        InputStream inputStream = getResources().openRawResource(selectedLevel);
-
-        // convert the raw csv data to a csv-like string which the gameCore can use
-        String level = csv.load(inputStream);
+        // get the level data
+        String level = findLevel();
 
         // only procceed if we have found something
         if (level == null) {
@@ -77,14 +74,17 @@ public class Game extends AppCompatActivity {
         // Create an object of CustomAdapter and set Adapter to boardView
         boardViewAdapter = new CustomAdapter(getApplicationContext(), sprites, boardViewData);
         boardView.setAdapter(boardViewAdapter);
-        GridView.LayoutParams lp = new GridView.LayoutParams(
-                (int) getResources().getDimension(R.dimen.width) * b.width,
-                (int) getResources().getDimension(R.dimen.height) * b.width);
-        boardView.setLayoutParams(lp);
+//        GridView.LayoutParams lp = new GridView.LayoutParams(
+//                (int) getResources().getDimension(R.dimen.width) * b.width,
+//                (int) getResources().getDimension(R.dimen.height) * b.width);
+//        boardView.setLayoutParams(lp);s
 
         // set up title
         TextView title = findViewById(R.id.boardTitle);
-        levelName = "Level " + thisLevel;
+        if (!isCustom) {
+            // set the name of the level
+            levelName = "Level " + thisLevel;
+        }
         title.setText(levelName);
 
         // set up controls
@@ -97,6 +97,50 @@ public class Game extends AppCompatActivity {
         ImageButton reset = findViewById(R.id.buttonReset);
         reset.setOnClickListener(new onResetBoard());
 
+    }
+
+    private String findLevel() {
+
+        // find the level
+        Intent intent = getIntent();
+        thisLevel = intent.getIntExtra("selectedLevel", 0);
+
+        if (thisLevel != 0) {
+
+            isCustom = false;
+
+            //convert it to a level name
+            String levelName = "raw/level" + thisLevel;
+
+            // find the corresponding resource id
+            Context context = getApplicationContext();
+
+            // read the corresponding csv file
+            int selectedLevel = getResources().getIdentifier(levelName, "raw", context.getPackageName());
+            Log.d("tag", "" + selectedLevel);
+            InputStream inputStream = getResources().openRawResource(selectedLevel);
+
+            // convert the raw csv data to a csv-like string which the gameCore can use
+            return csv.load(inputStream);
+
+        } else {
+
+            isCustom = true;
+            // custom procedures
+            String thisLevelTitle = intent.getStringExtra("selectedCustomLevel");
+
+            // load User created levels data
+            SharedPreferences ucl = getSharedPreferences(Menu.PREFDATA_UCL, 0);
+
+            //
+            levelName = thisLevelTitle;
+
+            // get the level out of the preferences
+            return ucl.getString(thisLevelTitle, "");
+
+
+
+        }
     }
 
     // handle back button
@@ -187,6 +231,13 @@ public class Game extends AppCompatActivity {
             backToMenu.setOnClickListener(new onGoToMain());
             retry.setOnClickListener(new onRetryLevel());
 
+            // hide buttons for the custom games
+            if (isCustom) {
+                title.setText("Custom level complete!");
+                nextLevel.setVisibility(View.GONE);
+                retry.setVisibility(View.GONE);
+            }
+
             // set up dialog
             dialog = suBuilder.create();
             dialog.setView(suView);
@@ -200,7 +251,7 @@ public class Game extends AppCompatActivity {
         public void onClick(View v) {
 
             AlertDialog.Builder suBuilder = new AlertDialog.Builder(Game.this );
-            suBuilder.setMessage("RESET BOARD?").setPositiveButton("YES", dialogResetClickListener)
+            suBuilder.setMessage("RESET LEVEL?").setPositiveButton("YES", dialogResetClickListener)
                     .setNegativeButton("NO", dialogResetClickListener).show();
         }
 
@@ -223,40 +274,6 @@ public class Game extends AppCompatActivity {
         };
 
     }
-
-
-    /*
-        Ask user to confirm an action
-     */
-//    public boolean confirmDialog(String statement, Context context) {
-//
-//        // configure a dialog interface
-//        DialogInterface.OnClickListener sumDialog = new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                switch (which) {
-//                    case DialogInterface.BUTTON_POSITIVE:
-//                        //Yes button clicked
-//                        dialogResponse = true;
-//                        break;
-//
-//                    case DialogInterface.BUTTON_NEGATIVE:
-//                        //No button clicked
-//                        dialogResponse = false;
-//                        break;
-//                }
-//            }
-//        };
-//
-//        // now use that interface
-//        AlertDialog.Builder suBuilder = new AlertDialog.Builder(context);
-//        suBuilder.setMessage(statement).setPositiveButton("YES", sumDialog)
-//                .setNegativeButton("NO", sumDialog).show();
-//
-//        return dialogResponse;
-//    }
-
-
 
     /*
         Go back to main menu.
@@ -445,26 +462,6 @@ public class Game extends AppCompatActivity {
     public void popup(String text) {
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
-
-
-
-    /*
-        recieve intent.
-     */
-    public int getLevel() {
-
-        // new way of doing things
-        Intent intent = getIntent();
-        thisLevel = intent.getIntExtra("selectedLevel", 0);
-
-        //convert it to a level name
-        String levelName = "raw/level" + thisLevel;
-
-        // find the corresponding resource id
-        Context context = getApplicationContext();
-        return getResources().getIdentifier(levelName, "raw", context.getPackageName());
-    }
-
 
     /*
         Route to the game activity

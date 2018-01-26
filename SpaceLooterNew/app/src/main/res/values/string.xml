@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="board_sizes">
+        <item>5 x 5</item>
+        <item>6 x 6</item>
+        <item>7 x 7</item>
+        <item>8 x 8</item>
+        <item>9 x 9</item>
+        <item>10 x 10</item>
+        <item>11 x 11</item>
+        <item>12 x 12</item>
+        <item>13 x 13</item>
+        <item>14 x 14</item>
+    </string-array>
+</resources>

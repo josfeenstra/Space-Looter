@@ -4,17 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/space_purple_nebula_small"
     tools:context="com.josfeenstra.spacelooter.Create">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.895">
+
+            <Button
+                android:id="@+id/buttonCreateCancel"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="488dp" />
+
+            <Button
+                android:id="@+id/buttonCreateNew"
+                android:layout_height="wrap_content"
+                android:text="New" />
+
+            <Button
+                android:id="@+id/buttonCreateSave"
+                android:layout_height="wrap_content"
+                android:text="Save" />
+        </GridLayout>
+
         <GridView
             android:id="@+id/boardView"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/board_height">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         </GridView>
 
@@ -23,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/entsans"
-            android:text="TextView"
+            android:text=""
             android:textColor="@android:color/white"
             android:textColorLink="@android:color/background_light" />
 
@@ -32,43 +62,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <GridView
-                android:id="@+id/boardItemSelect"
-                android:layout_width="300dp"
-                android:layout_height="50dp">
-
-            </GridView>
+            <Spinner
+                android:id="@+id/spinnerItemSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/buttonCreateCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancel"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="488dp" />
-
-            <Button
-                android:id="@+id/buttonCreateNew"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New" />
-
-            <Button
-                android:id="@+id/buttonCreateSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Save" />
-        </GridLayout>
 
     </LinearLayout>
 

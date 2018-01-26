@@ -16,9 +16,11 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 
 public class Submenu extends AppCompatActivity {
@@ -44,15 +47,13 @@ public class Submenu extends AppCompatActivity {
         Button buttonMedium = findViewById(R.id.mediumButton);
         Button buttonHard   = findViewById(R.id.hardButton);
         Button buttonExpert = findViewById(R.id.expertButton);
+        Button buttonCustom = findViewById(R.id.customButton);
 
         buttonEasy.setOnClickListener(  new onDifficultyClick( 1, 10, (String) buttonEasy.getText()));
         buttonMedium.setOnClickListener(new onDifficultyClick(11, 20, (String) buttonMedium.getText()));
         buttonHard.setOnClickListener(  new onDifficultyClick(21, 30, (String) buttonHard.getText()));
         buttonExpert.setOnClickListener(new onDifficultyClick(31, 40, (String) buttonExpert.getText()));
-
-        // setup special custom buttom
-        Button buttonCustom = findViewById(R.id.customButton);
-        buttonCustom.setOnClickListener(new onCustomClick());
+        buttonCustom.setOnClickListener(new onDifficultyClick(0, 0,   (String) buttonCustom.getText()));
 
     }
 
@@ -83,6 +84,9 @@ public class Submenu extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+
+            // add animation
+            v.startAnimation(AnimationUtils.loadAnimation(Submenu.this, R.anim.image_click));
 
             // set up popup window
             AlertDialog.Builder suBuilder = new AlertDialog.Builder(Submenu.this);
@@ -122,9 +126,31 @@ public class Submenu extends AppCompatActivity {
                 }
 
                 // make a listitem based upon that data
-                ListItem newListItem = new ListItem(i, unlocked, completed, moves);
+                ListItem newListItem = new ListItem(i, unlocked, completed, moves, null);
                 arrayOfListitems.add(newListItem);
             }
+
+            // if its the custom buttom, populate list differently
+            if (lastLevel == 0) {
+
+                // load some stuff
+                SharedPreferences UserCreatedLevels = getSharedPreferences(Menu.PREFDATA_UCL, 0);
+
+                Map<String, ?> allEntries = UserCreatedLevels.getAll();
+                for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+
+                    // check if its been completed before
+                    String name = entry.getKey();
+                    SharedPreferences progress = getSharedPreferences(Menu.PREFDATA_NAME, 0);
+                    boolean completed = progress.getBoolean("completed" + name, false);
+                    int moves = progress.getInt("moves" + name, -1);
+
+                    // make a listitem based upon that data
+                    ListItem newListItem = new ListItem(0, true, completed, moves, name);
+                    arrayOfListitems.add(newListItem);
+                }
+            }
+
             final ArrayList<ListItem> allItems = arrayOfListitems;
 
             // final preperations
@@ -138,6 +164,9 @@ public class Submenu extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                    // add animation
+                    view.startAnimation(AnimationUtils.loadAnimation(Submenu.this, R.anim.image_click));
+
                     //figure out what thingie is pressed
                     final ListItem item = allItems.get(position);
                     int selectedLevel = item.level;
@@ -146,7 +175,7 @@ public class Submenu extends AppCompatActivity {
                     if (item.unlocked) {
 
                         // go to that level
-                        gotoGame(selectedLevel);
+                        gotoGame(selectedLevel, item.title);
                     }
                 }
             });
@@ -165,15 +194,16 @@ public class Submenu extends AppCompatActivity {
         public boolean completed;
         public boolean unlocked;
         public int moves;
+        public String title;
 
-        public ListItem(int level, boolean unlocked, boolean completed, int moves) {
+        public ListItem(int level, boolean unlocked, boolean completed, int moves, String title) {
             this.level = level;
             this.unlocked = unlocked;
             this.completed = completed;
             this.moves = moves;
+            this.title = title;
         }
     }
-
 
     /*
         Adapter of the level select list per difficulty
@@ -199,39 +229,47 @@ public class Submenu extends AppCompatActivity {
             TextView lvlComp = (TextView) convertView.findViewById(R.id.popupListitemCompleted);
 
             // Populate the data into the template view using the data object
-            lvlName.setText("Level " + item.level);
-            if (item.completed) {
-                lvlComp.setText("Completed in " + item.moves + " moves!");
-            } else if(!item.unlocked) {
-                // show that the item is locked
-                //lvlName.setTextColor(getResources().getColor(R.color.colorHalfAccent));
-                lvlComp.setText("Locked");
-                convertView.setEnabled(false);
+            if (item.title == null) {
+                lvlName.setText("Level " + item.level);
+            } else {
+                lvlName.setText(item.title);
             }
+            if(item.unlocked) {
+                lvlName.setAlpha((float) 1);
+                lvlComp.setText("");
+            } else {
+                // show that the item is locked
+                lvlName.setAlpha((float) 0.3);
+                lvlComp.setText("");
+            }
+
+
+            if (item.completed) {
+                // show completed stats
+                lvlName.setAlpha(1);
+                lvlComp.setText("Completed in " + item.moves + " moves");
+            }
+
+
             // Return the completed view to render on screen
             return convertView;
         }
     }
 
     /*
-        Show all customly created levels
-     */
-    public class onCustomClick implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(getApplicationContext(), "TODO", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    /*
         Route to the game activity
     */
-    public void gotoGame(int levelID) {
+    public void gotoGame(int levelID, String title) {
 
         // next intent
         Intent intent = new Intent(Submenu.this, Game.class);
-        intent.putExtra("selectedLevel", levelID);
+
+        // custom or regular
+        if (title == null) {
+            intent.putExtra("selectedLevel", levelID);
+        } else {
+            intent.putExtra("selectedCustomLevel", title);
+        }
         startActivity(intent);
         finish();
 
@@ -271,6 +309,9 @@ public class Submenu extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+
+
 }
 
 

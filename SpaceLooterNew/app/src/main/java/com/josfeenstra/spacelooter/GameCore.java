@@ -422,7 +422,7 @@ class Board extends GeneralData {
     }
 
     // find an object
-    private Tile getObjectByType(char type) {
+    public Tile getObjectByType(char type) {
         // go trough all objects
         for (int y = 0; y < height; y += 1) {
             for (int x = 0; x < width; x += 1) {
