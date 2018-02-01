@@ -20,13 +20,13 @@ De structuur van de app spreekt redelijk voor zich, en is in grote lijnen hetzel
 
 Een aparte AlertDialog voor de settingsknop in het hoofdmenu is weggelaten, aangezien het bleek, dat alleen "reset progress" een gewilde setting is die de speler nodig heeft. De "view progress" functionaliteit is vervangen door meer informatie te geven in het Submenu. 
 
-### toevoeging: PROGRESS AND REWARD 
+### toevoeging: Progress en Reward 
 
 Toen de basisfunctionaliteit van de game overeind stond, ontbraken voor mijn gevoel een aantal elementen. Ik merkte bijvoorbeeld dat sommige levels makkelijker waren als je jezelf veel stappen gaf om het op te lossen. Ook dat de speler alle levels in 1 keer kon spelen voelde overweldigend, en het voltooien van een level voelde niet als een accomplishment. 
 
-Ik besloot daarom om PROGRESS en REWARD toe te voegen aan de app. De speler kan nu het eerste level van de 4 catagorieën spelen, en de rest 1 voor 1 vrijspelen. De REWARD heb ik toegevoegd door middel van high scores. De speler krijgt nu één, twee of drie sterren, gebaseerd op de prestatie. Dit geeft tevens het spel meer replayability, je kan terugkeren naar eerder gewonnen levels om ze op drie sterren te krijgen.  
+Ik besloot daarom om Progress en Reward toe te voegen aan de app. De speler kan nu het eerste level van de 4 catagorieën spelen, en de rest 1 voor 1 vrijspelen. De Reward heb ik toegevoegd door middel van high scores. De speler krijgt nu één, twee of drie sterren, gebaseerd op de prestatie. Dit geeft tevens het spel meer Replayability, je kan terugkeren naar eerder gewonnen levels om ze op drie sterren te krijgen.  
 
-### toevoeging: CUSTOM LEVELS 
+### toevoeging: Custom levels 
 
 Ook wilde ik graag de kracht van de GameCore (zal weldra uitgelegd worden) op een bepaalde manier kunnen tonen. Het accepteerd veel meer formats dan de levels van het orginele spel. Ik besloot om een "Create Game" knop toe te voegen aan het hoofdmenu, gekoppeld aan een nieuwe Create class. Hierin kan een nieuw level worden gemaakt en opgeslagen. Vervolgens heeft het Submenu een knop gekregen waar deze levels vervolgens speelbaar zijn. 
 
@@ -95,29 +95,30 @@ De hoeveelheid functies is zo omvangrijk, dat het moeilijk te beschrijven is als
         - show state of Tile array / board with functions printBoardState() and getBoardViewData()
 
 ## challenges
-##### Clearly describe challenges that your have met during development. Document all important changes that your have made with regard to your design document (from the PROCESS.md). Here, we can see how much you have learned in the past month.
 
-Je zou denken dat het spel zelf het lastigste deel van de app zou zijn. Dit bleek redelijk mee te vallen. Door het probleem te isoleren, en de eerste week puur en alleen de core het spel te maken, was het spel zelf een niet al te intimiderende opdracht. 
+Het schrijven van deze app ging gepaard met ontelbare kleine ontwerpproblemen en -oplossingen, en heel veel tweaken. Wederom teveel om op te noemen. Het logboek beschrijft wel veel van de gemaakte tussenstappen en kleine slimmigheden. Graag verwijs ik hiernaar als je meer wilt weten van mijn specifieke handelingen.  
 
+Je zou denken dat het spel zelf het lastigste deel van de app zou zijn. Dit bleek redelijk mee te vallen. Door het probleem te isoleren, en de eerste week puur en alleen de core het spel te maken, was het spel zelf een niet al te intimiderende opdracht. De grote "aha" momenten kwamen van het besluit om elke tile een Tile object te maken, en deze objecten niet van coordinaat te laten veranderen, maar hun type te laten aanpassen. De in Programmeren 1 geleerde recursie fuctionaliteit is zelfs toegepast. Als de speler bijvoorbeeld een blokje duwt, wordt het "kan ik mezelf naar links verpaatsen" vraagstuk van de speler recursief doorgegeven naar het blokje, aangezien deze ook moet checken of hij naar links kan bewegen  
 
+Het was ook nog even puzzelen om de csv's goed in te laden en manipuleren. Gelukkig hebben we in Programmeren 1 veel te maken gehad met de manipulatie van strings en het laden van files, dus hier kwam ik uiteindelijk wel uit. Nu ik het zeg, de opdrachten van Programmeren sloten eigelijk perfect aan op deze app. Het spel kan ook gezien worden als een variant op de Game of Fifteen.
 
-XML, boardview, interface was een drama
+Gedurende het schrijven van deze app, ben ik ook steeds confortabeler geworden met het stoeien met xml-gerelateerde elementen zoals gridViews en spinners. Toch ontkwan ik er niet aan om veel te worsterelen met hoe android bepaalde elementen visualiseerde. De Gridview van het speelboard bijvoorbeeld liet zich niet makkelijk manipuleren. Helaas kunnen dit soort problemen niet opgelost worden met bepaalde hogere wijsheid, het is trial and error. Ik merkte wel steeds beter te kunnen raden wat Android van mij wilde, ongetwijfeld een resultaat van alle gemaakte uren met Android Studio. 
 
-listviews goed laten luisteren was lastig
-
-csv was makkelijk
-
-
+Het was misschien wel het lastigst om van te voren aan te geven hoe de code van de app eruit zou komen te zien. De uiteindelijk geschreven code is een accumulatie van design-oplossingen gemaakt terwijl de code geschreven wordt. Van tevoren vastleggen hoe de code er eruit komt de zien is in een ontwerpproces is daarom niet iets wat ik graag doe. Het is wel zo dat doormiddel van schetsen je uiteindelijk tot een ontwerp kan komen. Toch werk ik met het schrijven van code het liefst direct naar een bepaald resultaat toe, dan dat ik eerst de code "schets". Dit Onderdeel kon dus beter.
 
 ### changes from initial design document
-##### Defend your decisions by writing an argument of a most a single paragraph. Why was it good to do it different than you thought before? Are there trade-offs for your current solution? In an ideal world, given much more time, would you choose another solution?
 
-Bij technical design is de 
+Bij technical design zijn de verschillende veranderingen al aangegeven en toegeligd. Het zijn voornamelijk toevoegingen, geen veranderingen, dus vereisen geen verdere toelichting. 
 
-Bij het maken van het originele Design document, had ik al opgemerkt niet te kunnen zeggen hoe grote delen van de app eruit zouden komen
+Ik heb niet veel 
 
-Ik heb na het schrijven van de classes de design document deze er ook niet meer bijgepakt, of ze gebruikt als referentie. Ik heb voornamelijk de "advanced sketch" gebruikt als een Roadmap van hoe de app er uiteindelijk uit zou moeten zien, en dit was genoeg richting. De uiteindelijk geschreven code is een accumulatie van Design-solutions gemaakt terwijl de code geschreven wordt. Van tevoren vastleggen hoe de code er eruit komt de zien is in een ontwerpproces is daarom niet handig.
+Wel licht ik nog graag toe waarom de gebruikte classes van de GameCore totaal niet lijken op de voorgestelde elementen van het design document. Ik heb bij het schrijven van de classes het design document er namelijk niet meer bijgepakt, of ze gebruikt als referentie. Ik heb voornamelijk de "advanced sketch" gebruikt als een Roadmap van hoe de app er uiteindelijk uit zou moeten zien, en dit was genoeg om het process richting te geven. De classes van het designdocument zijn dus niets anders dan een ruwe schatting. 
 
-er is niet meer gekeken naar online functionaliteit
+er is niet meer gekeken naar online functionaliteit. Dit kan wellicht in mijn eigen tijd nog uitgewerkt worden, maar het had naar mijn mening geen functionele noodzaak, anders dan dat men wellicht iets wil doen met alle User Created Levels. 
+
+## Closure 
+
+ten slotte wil ik Martijn bedanken, sinds hij het toestond dat ik geen API hoefde te gebruiken. De tijd die ik niet hoefde te besteden in het zoeken en managen api heb ik kunnen steken in het verder begrijpen van de mogelijkheden van Android Studio, en dit is de rede dat De app nu (naar eigen zeggen) in zo'n compleet stadium ingeleverd kon worden. 
+
 
 
