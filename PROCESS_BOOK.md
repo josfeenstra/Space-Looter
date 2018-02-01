@@ -51,6 +51,20 @@ vraag: tips over datastructuur / waar zet ik vaak gebruikte functies die ik in m
 
 vraag: is de navigatiestructuur die ik nu gebruik correct / foolproof?
 
+### EXTRA: TOELICHTING PROTOTYPE PHASE
+
+Gezien de afwijkende nature van deze app in vergelijking met andere, heb ik het onderdeel "prototype" niet opgevat als het framework van de app maken. Daarentegen is voor deze week het daadwerkelijk prototype van het spel gemaakt (zie screenshots). Dit is de core van de app, waar alle andere functies aan ondergeschikt zijn, zoals navigatie. 
+
+Het is nu mogelijk om de speler, 'O', met de pijltoetsen te verplaatsen over het board, en bepaalde blokken te verschuiven. Het spelboard kan geladen en opgeslagen worden met behulp van csv's. 
+
+Functies zoals een history om stappen terug te zetten, of een win condition, zijn nog niet geimplementeerd.
+Door "datatest" te runnen, gelocaliseerd in de folder scripts, kan dit prototype gespeeld worden. Het is wel van belang dat de Path naar het csv bestand veranderd wordt naar zijn huidige locatie. 
+
+EDIT: de complete functionaliteit van het prototype spel zijn nu wel geimplementeerd, het is ook niet meer nodig om manual de path te veranderen. De prototype folder bevat dit complete script. To run: >java prototype
+
+### screenshots 
+![afb1](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/cmd1.PNG)![afb2](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/cmd2PNG.PNG)
+
 ## LOG WEEK 3
 
 ### maandag 15 jan
@@ -107,8 +121,47 @@ BELANGRIJKE TOEVOEGINGEN (op relevantie):
 
 ### dinsdag 16 jan
 
+Het scoresysteem is vandaag eindelijk goed geimplementeerd. Het gevecht met xml is officieel begonnen, sinds ik nu de boardview en ingame button interface eindelijk naar me wil laten luisteren. Het is gevaarlijk om dit zo laat te doen, sinds alle bijsluiteres nog gemaakt en geschreven moeten worden, maar ik wil gewoon graag dat ik mijn app af mag noemen. 
+
+VAN GISTER
+- Fix een leuker scoresysteem. - DONE
+
+XML GEVECHTEN
+- kijk of de interface nog een stapje beter kan 
+- kijk of de gridview nog te fixen valt
+
+POLISH 
+- verbeter de UI sprites (knoppen ingame)  
+- verbeter de boardView sprites 
+
 ### woensdag 17 jan
+
+De XML gevechten gaan moeizaam. De oplossingen die ik vind zijn niet per sé logisch, en roepen meer vragen op dan dat ze beantwoorden, maar ik heb mezelf erbij neergelegd dat ik bij dit onderdeel ga focussen op het resultaat, niet de implementatie. Ik waarschuw dus dat de code die gaat over de boardview en interface controlleren dus erg slordig gaat zijn. 
+
+Ik ben er wel aan toegekomen het Game scherm er in het algemeen wat beter uit te laten zien. De sprites zijn zelf gemaakt met Sketchup, het was de enige manier hoe ik weet om makkelijk shading / textures toe te passen, simpele, strakke vormen te tekenen, en te stoeien met perspectief. Het Title Screen Logo is tevens ook zo gecreerd destijds. 
+
+De UI interface is van internet geplukt. Ik moet onthouden dit goed te documenteren in de readme. 
+
+XML GEVECHTEN
+- kijk of de interface nog een stapje beter kan BUSY 
+- kijk of de gridview nog te fixen valt BUSY
+
+POLISH 
+- verbeter de UI sprites (knoppen ingame) DONE 
+- verbeter de boardView sprites DONE
 
 ### donderdag 18 jan
 
+Het gevecht is gewonnen. XML kan mij niks meer maken, de draak is getemd. De boardview past zich nu correct aan aan de afmetingen van het board. Een 7x7 board heeft dus grotere sprites dan een 13x13 board. Ook de knoppen van de interface dansen minder rond als voorheen als ik switch van schermgrootte, en blijven enigzins in dezelfde structuur. Ik had de keuze deze onzichtbaar te maken, maar hier is niet voor gekozen uiteindelijk. Er is een kans dat op bepaalde mobieltjes de knoppen alsog gekke taferelen uithalen, en ik wil dan graag weten wat deze "onzichtbare" knoppen uitspoken.  
+
+Het is nu ook eindelijk tijd om de bijsluiters te schrijven. Ik schrijf deze een stuk fijner, wetende dat de build nu stabieler en mooier is dan voorheen. 
+
+XML GEVECHTEN
+- kijk of de interface nog een stapje beter kan DONE 
+- kijk of de gridview nog te fixen valt DONE
+
+BIJSLUITERS
+- maak final report
+- verbeter readme
+- zorg dat aan alle voorwaarden wordt voldaan
 ### vrijdag 19 jan
