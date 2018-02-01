@@ -1,11 +1,16 @@
 /*
     Activity: Menu
     Author:   Jos Feenstra
+
     Purpose:  Main Menu, Navigation
-              - 3 buttons, Select Level, Make Your Own, remove progress
-                - Select Level: route to Submenu activity
-                - Make your own: route to Createlevel activity
-                - Remove progress: removes the progress
+
+    Structure: - When game starts,
+                 - all highscore data is loaded from csv into userpref for better usage throughout the rest of the app.
+               - 3 buttons, Select Level, Make Your Own, remove progress
+                 - Select Level: route to Submenu activity
+                 - Make your own: route to Createlevel activity
+                 - Remove progress: removes the progress
+
  */
 
 package com.josfeenstra.spacelooter;
@@ -29,6 +34,7 @@ import java.io.InputStreamReader;
 
 public class Menu extends AppCompatActivity {
 
+    // centralize the names of the 3 different sharedpreferences datasets
     public static final String PREFDATA_NAME = "progress";
     public static final String PREFDATA_HIGHSCORE = "high_score";
     public static final String PREFDATA_UCL = "user_created_levels";
@@ -47,10 +53,10 @@ public class Menu extends AppCompatActivity {
         buttonCreateLevel.setOnClickListener(new onCreateLevelClick());
         buttonSettings.setOnClickListener(new onSettingsClick());
 
-        /*  NOTE: for now, the highscore is always loaded into cache, in case its in need of an update)
+        // load and save high score
+        /*  NOTE: The highscore is always loaded into userpref, in case its in need of an update)
             The highscore is written and recalled with a csv, because there are a little bit too many variables to hardcore this data.
         */
-        // load and save high score
         int[][] vals = loadHighscoreValues();
         SharedPreferences highscore = getSharedPreferences(Menu.PREFDATA_HIGHSCORE, 0);
         SharedPreferences.Editor editor = highscore.edit();
@@ -116,7 +122,7 @@ public class Menu extends AppCompatActivity {
     }
 
     /*
-        button 1
+        button 1: goto submenu
      */
     public class onSubmenuClick implements View.OnClickListener {
         @Override
@@ -133,7 +139,7 @@ public class Menu extends AppCompatActivity {
     }
 
     /*
-        button 2
+        button 2: goto create level
       */
     public class onCreateLevelClick implements View.OnClickListener {
 
@@ -151,9 +157,8 @@ public class Menu extends AppCompatActivity {
         }
     }
 
-
     /*
-        button 3
+        button 3: reset data
       */
     public class onSettingsClick implements View.OnClickListener {
 
@@ -190,10 +195,10 @@ public class Menu extends AppCompatActivity {
             }
         };
     }
-        /*
+
+    /*
          hide toast sintax
     */
-
     public void popup(String text) {
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }

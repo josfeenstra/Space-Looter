@@ -1,13 +1,24 @@
 /*
     Activity: Submenu
     Author:   Jos Feenstra
-    Purpose:  Level select, specific navigation, show and measure progress
-              - 5 Catagories: Easy , Medium, Hard, Expert, Custom
-              - each giving a popup window, within it a scrollable list of levels
 
+    Purpose:  Level select, specific navigation, show and measure progress
+
+    Structure: - 5 Catagories: Easy , Medium, Hard, Expert, Custom
+                 - each giving a popup window, within it a scrollable list of levels
+                 - Per level
+                   L display if the level is completed, unlocked or locked
+                   L if completed or unlocked, show the number of moves needed to reach a certain score
+                   L if the level is completed, show stars according to the lowest "high"score reached on that level
+
+                   L if the level is a custom level
+                     L dont show any highscore stats, always unlock it
+                     L make sure the levels can be deleted, by clicking and holding down de level.
  */
 
 package com.josfeenstra.spacelooter;
+
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +28,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +42,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Map;
-
 
 public class Submenu extends AppCompatActivity {
 
@@ -120,6 +131,24 @@ public class Submenu extends AppCompatActivity {
                 }
             });
 
+            // let the back button do the same
+            suBuilder.setOnKeyListener(new Dialog.OnKeyListener() {
+
+                @Override
+                public boolean onKey(DialogInterface arg0, int keyCode,
+                                     KeyEvent event) {
+                    //
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        changeButtonStatus(true);
+                        dialog.dismiss();
+                    }
+                    return true;
+                }
+            });
+
+
+
+
             // set up the title
             TextView titleView = suView.findViewById(R.id.popupTitle);
             titleView.setText(titleOfLevels);
@@ -198,6 +227,10 @@ public class Submenu extends AppCompatActivity {
                     }
                 }
             });
+
+
+
+
 
 
             // give it a Long listener if its the custom view, to delete custom levels

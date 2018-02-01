@@ -1,20 +1,40 @@
-package com.josfeenstra.spacelooter;
-
-/**
- * Created by Jos on 1/17/2018.
- */
 
 /*
+    Module:    GameCore
+    Author:    Jos Feenstra
 
+    Purpose:   Contains all classes related to the functionality of the game itself
+               Interact with the Game and Create class
 
-    NOTE VRAAG: CHAR'S EN STRINGS, ik heb nu beunoplossing, maar dat kan beter
+    Structure: 4 classes:
 
-    LOGBOEK;
-    maandag - woensdag = ontwikkelen van de conceptmatische app
-    donderdag = begonnen aan de game "op het droge",
-                - het is nu mogelijk om csvs te laden
+     1. GeneralData
+        - Contains all static data
+        - name of game elements, the characters used to respresent them in csv files, etc
+        - 3 other classes are extentions from this class
+
+     2. CsvReader
+        - load a csv file from the raw resource folder
+        - replace any empty places, like ",,," with spaces " , , ,"
+        - return all csv data in 1 string, named gameData
+
+     3. Tile
+        - represents a single object on the board which can be placed as a tile (also empty ones).
+        - handles events like "can i move left?" and changeType.
+
+     4. Board
+        - can be seen as the actual core of the game
+        - construction:
+            - construct with gameData, gathered from the csv reader
+            - get the width and length of the board from gameData
+            - make a 2d array of Tile classes, based upon this width and height
+        - accepts game input, checks game input (check if move is legal), and update Tile array accordingly
+        - Keeps track of history, so undo's can be made
+        - show state of Tile array / board with functions printBoardState() and getBoardViewData()
 
 */
+package com.josfeenstra.spacelooter;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 
@@ -22,7 +42,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /*
-    yiels data shared between classes
+     1. GeneralData
+        - Contains all static data
+        - name of game elements, the characters used to respresent them in csv files, etc
+        - 3 other classes are extentions from this class
 */
 class GeneralData {
 
@@ -75,20 +98,22 @@ class GeneralData {
 }
 
 /*
-    holds all csv type operations.
-    this version works in android studio
+     2. CsvReader
+        - load a csv file from the raw resource folder
+        - replace any empty places, like ",,," with spaces " , , ,"
+        - return all csv data in 1 string, named gameData
 */
 class CsvReader extends GeneralData{
 
     // data
     public String[] levelPaths;
 
-    // fill data above
+    // constuctor (this could not be combined with the function directly below)
     public CsvReader() {
 
     }
 
-    // read a csv file, write it into a single string. THIS ONE ONLY WORKS OUTSIDE OF ANDROID STUDIO
+    // read a csv file, write it into a single string.
     public String load(InputStream is) {
 
         String rawLine = "";
@@ -148,7 +173,9 @@ class CsvReader extends GeneralData{
 }
 
 /*
-    Tile represents all objects which can be placed as a tile
+    3. Tile
+       - represents a single object on the board which can be placed as a tile (also empty ones).
+       - handles events like "can i move left?" and changeType.
 */
 class Tile extends GeneralData {
 
@@ -240,7 +267,15 @@ class Tile extends GeneralData {
 }
 
 /*
-    Board represents the joined effort of all tiles
+    4. Board
+        - can be seen as the actual core of the game
+        - construction:
+            - construct with gameData, gathered from the csv reader
+            - get the width and length of the board from gameData
+            - make a 2d array of Tile classes, based upon this width and height
+        - accepts game input, checks game input (check if move is legal), and update Tile array accordingly
+        - Keeps track of history, so undo's can be made
+        - show state of Tile array / board with functions printBoardState() and getBoardViewData()
 */
 class Board extends GeneralData {
 
@@ -281,7 +316,7 @@ class Board extends GeneralData {
         loadFromString(boardData);
     }
 
-    // set the dimentions of the thing
+    // set the dimentions of the board
     public void setDim(String boardData) {
 
         // keep track of counters, init other values
@@ -315,7 +350,7 @@ class Board extends GeneralData {
         int Xread = 0;
         int Yread = 0;
         char c;
-        // get necesairy values
+        // get necessary values
         int boardLength = boardData.length();
 
         // read the boarddata per character

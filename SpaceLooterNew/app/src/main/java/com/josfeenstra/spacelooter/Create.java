@@ -1,3 +1,24 @@
+/*
+    Activity: Create
+    Author:   Jos Feenstra
+
+    Purpose:  Level creation, interact with gameCore, test and save the level.
+
+    Structure: - when the 'New' button is pressed
+                 - prompt the user to give up a name, and a boardsize
+                 - if name is correct, make a new game, customly write a gameData string.
+                 - Undertake similar steps as GameCore using this gameData, to eventually get a popupated boardView
+
+               - populate a spinner with the items of the game.
+
+               - if a tile of the board is pressed, change its type, according to the item selected in the spinner
+
+               - when the 'save' button is pressed
+                 - test if the board makes at least a bit sense (does it have a player, exit, 1 item of treasure)
+                 - save the game to sharedpreferences if correct.
+
+ */
+
 package com.josfeenstra.spacelooter;
 
 import android.app.Activity;
@@ -31,19 +52,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-/*
-    Ask for settings -> up to 15 x 15, name
-    Build exactly that
-    Manage the boardview
-    make sure new things can be places
-
-    New -> discard ?
-    Cancel -> discard ?
-    Save -> is it good ?
-
-
-
- */
 public class Create extends AppCompatActivity {
 
     // make sure all functions can refer to these objects
@@ -57,7 +65,6 @@ public class Create extends AppCompatActivity {
     // get the sprite ID links from game
     int sprites[] = Game.sprites;
     String names[] = GeneralData.names;
-    int selectedSprite;
 
     // Keep track of the generated Data
     String newLevelName;
@@ -116,7 +123,7 @@ public class Create extends AppCompatActivity {
 
         // set values for spinner adapter
         int MIN_SIZE = 7;
-        int MAX_SIZE = 13;
+        int MAX_SIZE = 15;
         int lim = MAX_SIZE - MIN_SIZE;
         String[] spinnerEntries = new String[lim];
         final int[] spinnerVal = new int[lim];
@@ -311,56 +318,6 @@ public class Create extends AppCompatActivity {
     public void updateBoard() {
         boardViewAdapter.refresh(b.getBoardViewData());
     }
-
-
-    /*
-        The boardview adapter.
-    */
-//
-//    public class CustomAdapter extends BaseAdapter {
-//        Context context;
-//        int sprites[];
-//        int logos[];
-//        LayoutInflater inflter;
-//        public CustomAdapter(Context applicationContext, int[] sprites, int[] logos) {
-//            this.context = applicationContext;
-//            this.sprites = sprites;
-//            this.logos = logos;
-//            inflter = (LayoutInflater.from(applicationContext));
-//        }
-//        @Override
-//        public int getCount() {
-//            return logos.length;
-//        }
-//        @Override
-//        public Object getItem(int i) {
-//            return null;
-//        }
-//        @Override
-//        public long getItemId(int i) {
-//            return 0;
-//        }
-//        @Override
-//        public View getView(int i, View view, ViewGroup viewGroup) {
-//
-//            // inflate a view
-//            view = inflter.inflate(R.layout.board_item, null);
-//
-//            // select and assign correct image
-//            ImageView sprite = (ImageView) view.findViewById(R.id.sprite);
-//            int thisIndex = logos[i];
-//            sprite.setImageResource(sprites[thisIndex]);
-//
-//            return view;
-//        }
-//
-//        // update data with new data
-//        public void refresh(int[] newData) {
-//            logos = newData;
-//            notifyDataSetChanged();
-//        }
-//    }
-//
 
     /*
         The itemSelect adapter data.

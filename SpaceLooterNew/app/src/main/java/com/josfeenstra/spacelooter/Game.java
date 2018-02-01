@@ -1,3 +1,36 @@
+/*
+    Activity: Game
+    Author:   Jos Feenstra
+
+    Purpose:  Play the game, show and handle input, show output, interact with GameCore module
+
+    Structure: 1. construct 2 classes of GameCore
+                  L csvReader
+                    - construct it
+                    - load a csv file from the raw resource folder
+                    - replace any empty places, like ",,," with spaces " , , ,"
+                    - return all csv data in 1 string, named gameData
+                  L Board
+                    - constructed using the gameData from the csv reader
+                    - accepts 6 types of input: up, down, left, right, '1 move back', and 'reset board'.
+                    - checks if these moves are legal
+                    - return the current state of the board
+
+               2. with the GameCore all set up, now populate the gridview with images, according to data recieved by gamecore.
+
+               3. assign buttons to a general game input click listener
+                  L if a button is clicked, send it to the Board class in the GameCore
+
+               4. after that, keep updating the board every time a button is pressed, and check if the game is won
+
+               5. if the game is won, congratulate the player, and show navigation buttons to:
+                  - next level
+                  - submenu
+                  - retry level
+
+    Note: Please mind that the Board class named b, and the gridview named boardView are easily mixed up.
+ */
+
 package com.josfeenstra.spacelooter;
 
 import android.annotation.TargetApi;
@@ -14,7 +47,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -22,7 +54,6 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -100,7 +131,6 @@ public class Game extends AppCompatActivity {
             ImageButton button = findViewById(id);
             button.setOnClickListener(new onGameClick());
         }
-
         ImageButton reset = findViewById(R.id.buttonReset);
         reset.setOnClickListener(new onResetBoard());
 
@@ -110,6 +140,7 @@ public class Game extends AppCompatActivity {
 
     }
 
+    // return the level selected in the submenu activity, by opening up the intent.
     private String findLevel() {
 
         // find the level
@@ -117,7 +148,6 @@ public class Game extends AppCompatActivity {
         thisLevel = intent.getIntExtra("selectedLevel", 0);
 
         if (thisLevel != 0) {
-
             isCustom = false;
 
             //convert it to a level name
@@ -135,26 +165,24 @@ public class Game extends AppCompatActivity {
             return csv.load(inputStream);
 
         } else {
-
             isCustom = true;
+
             // custom procedures
             String thisLevelTitle = intent.getStringExtra("selectedCustomLevel");
 
             // load User created levels data
             SharedPreferences ucl = getSharedPreferences(Menu.PREFDATA_UCL, 0);
-
-            //
             levelName = thisLevelTitle;
 
             // get the level out of the preferences
             return ucl.getString(thisLevelTitle, "");
 
-
-
         }
     }
 
-    // handle back button
+    /*
+        handle back button
+     */
     @Override
     public void onBackPressed() {
         // do something on back.
