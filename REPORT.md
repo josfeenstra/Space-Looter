@@ -8,7 +8,7 @@ De app bevat de originele 40 levels. Daarnaast wordt de speler, anders dan in he
 
 In het spel zelf is het de bedoeling om schatten / 'Treasure' / 'Loot' naar de uitgang te duwen. Dit doe je doormiddel van het besturen van een robot. Er liggen ook diverse obstakels in de weg, die de robot ook weg kan duwen, maar enkel in 1 richting. Logisch denken is nodig om de duwvolgorde te bepalen, en alle Loot naar de uitgang te duwen.
 
-<img src="doc/documentation/phase%20final%20screenshots/Menu.png" alt="Drawing" style="width: 100px;"/>
+<img src="doc/documentation/phase%20final%20screenshots/Menu.png" alt="Drawing" style="width: 10px;"/>
 
 ### Technical Design
 ##### Create a report (REPORT.md), based on your design document, containing important decisions that you’ve made, e.g. where you changed your mind during the past weeks. This is how you show the reviewer that you actually understand what you have done.
