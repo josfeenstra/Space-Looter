@@ -14,6 +14,7 @@ In het spel zelf is het de bedoeling om schatten / 'Treasure' / 'Loot' naar de u
 ##### Create a report (REPORT.md), based on your design document, containing important decisions that you’ve made, e.g. where you changed your mind during the past weeks. This is how you show the reviewer that you actually understand what you have done.
 
 #### Clearly describe the technical design: how is the functionality implemented in your code? This should be like your DESIGN.md but updated to reflect the final application. First, give a high level overview, which helps us navigate and understand the total of your code (which components are there?). Second, go into detail, and describe the modules/classes (apps) files/functions (data) and how they relate.
+De structuur van de app spreekt redelijk voor zich, en is in grote lijnen hetzelfde als in het design document. 
 
 Natuurlijk is er een class per activity gebruikt, die de functionaliteit van zijn bijbehorende activity regelt. Daarnaast bevat het android project de zogehete GameCore class, een module bestaande uit 4 classes. deze 4 classes kunnen gezien worden als de "inner workings", de core van het spel.   
 
