@@ -3,7 +3,7 @@
 <img src="doc/documentation/phase%20final%20screenshots/Menu.png" alt="Drawing" width="220" height="380"/><img src="doc/documentation/phase%20final%20screenshots/device-2018-02-01-152404.png" alt="Drawing" width="220" height="380"/><img src="doc/documentation/phase%20final%20screenshots/Game.png" alt="Drawing" width="220" height="380"/><img src="doc/documentation/phase%20final%20screenshots/Create.png" alt="Drawing" width="220" height="380"/>
 
 ## Probleemstelling:
-Analoge puzzel bordspellen, zoals rush hour, moeten met de tijd meegaan om relevant te blijven. Dit soort spellen van bijvoorbeeld Thinkfun of Smart Games zijn vaak erg goed uitgewerkt, en bevatten 40 goed ontworpen levels. Helaas zal hier weinig van gebruikt worden, sinds men niet meer bereid is een plastic bordspel mee te nemen in de trein of auto. Men kan immers honderden spellen installeren op hun mobieltje of tablet. 
+Analoge puzzel bordspellen, zoals rush hour, moeten met de tijd meegaan om relevant te blijven. Dit soort spellen van bijvoorbeeld Thinkfun of Smart Games zijn vaak erg goed uitgewerkt, en bevatten 40 goed ontworpen levels. Helaas zal hier weinig van gebruikt worden, sinds men niet (meer) bereid is een plastic bordspel mee te nemen in de trein of auto. Men kan immers honderden spellen installeren op hun mobieltje of tablet. 
 
 Daarnaast verwacht men nu ook meer van een spel of app. Het moet niet uitgespeeld zijn na 40 levels, er moet op een bepaalde manier verder gespeeld kunnen worden, of het spel zal snel weer worden vergeten. 
 
