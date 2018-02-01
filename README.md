@@ -24,7 +24,7 @@ Het doel van het spel is om met de Robot (rood), de Loot (geel) naar de uitgang 
 ### BetterCodeHub 
 [![BCH compliance](https://bettercodehub.com/edge/badge/josfeenstra/Space-Looter?branch=master)](https://bettercodehub.com/)
 
-BCH is niet erg blij met mn prestatie. Terecht, sommige stukken code zijn ontzettend lang, en wat ingewikkeld, met classes in classes. Echter, als ik deze uit elkaar had willen trekken, levert dit bijna net zoveel onduidelijkheid en complicaties op, met de grote hoeveelheid variablelen die dan doorgeschoven moeten worden, functies die niet werken in een static context, variablelen die ik niet zomaal final kan maken, enzovoort. Dat ik een spel heb gemaakt in een context die eigenlijk niet bedoelt is om spellen in te maken, is ook iets waardoor de code soms gecompliceerd is. Ik heb dit gecompenseerd door veel comments toe te voegen. 
+BCH is niet erg blij met mn prestatie. Terecht, sommige stukken code zijn ontzettend lang, en wat ingewikkeld. Echter, als ik de code had willen gladstrijken, levert dit bijna net zoveel onduidelijkheden en complicaties op, met de grote hoeveelheid variablelen die dan doorgeschoven moeten worden, functies die niet werken in een static context, variablelen die ik niet zomaal final kan maken, enzovoort. Dat ik een spel heb gemaakt in een context die eigenlijk niet bedoelt is om spellen in te maken, is ook iets waardoor de code soms gecompliceerd is. Ik heb dit gecompenseerd door veel comments toe te voegen. 
 
 Ik heb dus geprobeerd zoveel mogelijk problemen aangekaart door BHC op te lossen, als dit niet al te grote gevolgen hadden voor de structuur van de code. 
 
