@@ -1,7 +1,6 @@
-##### Create a report (REPORT.md), based on your design document, containing important decisions that you’ve made, e.g. where you changed your mind during the past weeks. This is how you show the reviewer that you actually understand what you have done.
+# Final Report
 
 ### Summary
-#### Start with a short description of your application (like in the README.md, but very short, including a single screen shot).
 
 Deze app is een "digitalisatie" van het éénpersoons puzzel bordspel "Treasure Quest" van ThinkFun. Het is gemaakt in de bedoeling dat Thinkfun's spel niet zou worden vergeten, maar ook in deze tijd nog vollop gespeeld kan en zal worden.
 
@@ -9,9 +8,11 @@ De app bevat de originele 40 levels. Daarnaast wordt de speler, anders dan in he
 
 In het spel zelf is het de bedoeling om schatten / 'Treasure' / 'Loot' naar de uitgang te duwen. Dit doe je doormiddel van het besturen van een robot. Er liggen ook diverse obstakels in de weg, die de robot ook weg kan duwen, maar enkel in 1 richting. Logisch denken is nodig om de duwvolgorde te bepalen, en alle Loot naar de uitgang te duwen.
 
-(SCREENSHOT)
+![Example](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/phase%20final%20screenshots/Game.png =20x50)
 
 ### Technical Design
+##### Create a report (REPORT.md), based on your design document, containing important decisions that you’ve made, e.g. where you changed your mind during the past weeks. This is how you show the reviewer that you actually understand what you have done.
+
 #### Clearly describe the technical design: how is the functionality implemented in your code? This should be like your DESIGN.md but updated to reflect the final application. First, give a high level overview, which helps us navigate and understand the total of your code (which components are there?). Second, go into detail, and describe the modules/classes (apps) files/functions (data) and how they relate.
 
 Natuurlijk is er een class per activity gebruikt, die de functionaliteit van zijn bijbehorende activity regelt. Daarnaast bevat het android project de zogehete GameCore class, een module bestaande uit 4 classes. deze 4 classes kunnen gezien worden als de "inner workings", de core van het spel.   
