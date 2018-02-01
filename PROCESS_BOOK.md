@@ -97,6 +97,14 @@ VOOR VOLGENDE WEEK
 
 ### maandag 15 jan
 
+Er ging goed veel mis met het uploaden van de android studio files naar git. ik heb daarom alle files gemigrate naar een andere locatie, en geupload via een nieuwe naam, SpaceLooterNew.
+
+Verder is veel van deze dag in de ban geweest van het afwerken van deze twee todo's:
+
+BELANGRIJKE TOEVOEGINGEN (op relevantie):
+- Zorg ervoor dat de custom levels kunnen worden verwijdered. - DONE 
+- Fix een leuker scoresysteem. - BUSY
+
 ### dinsdag 16 jan
 
 ### woensdag 17 jan
