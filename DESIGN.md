@@ -51,7 +51,6 @@ NOTE: the inner workings of these classes in terms of functions cannot be writte
 ## Data sources
 - Levels are based upon Thinkfun Games's Treasure Quest.
   DISCLAIMER: I do not own the design of these levels, this app is for non-commercial use (study).
-- No other external data sources used.  
 
 ## Database tables and fields
 - Not applicable for app.
