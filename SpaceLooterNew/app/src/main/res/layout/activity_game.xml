@@ -2,10 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:theme="@android:style/Theme.Black.NoTitleBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/space_purple_nebula_small"
+    android:theme="@android:style/Theme.Black.NoTitleBar"
     tools:context="com.josfeenstra.spacelooter.Game">
 
 
@@ -15,95 +15,182 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="400dp">
 
             <GridView
                 android:id="@+id/boardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:foregroundGravity="center">
+                android:columnWidth="40dp"
+                android:foregroundGravity="center"
+                android:stretchMode="columnWidth">
 
             </GridView>
 
         </FrameLayout>
 
-        <TextView
-            android:id="@+id/boardTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/entsans"
-            android:text="TextView"
-            android:textColor="@android:color/white"
-            android:textColorLink="@android:color/background_light" />
-
-        <RelativeLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/buttonUp"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_alignParentTop="true"
-                android:layout_column="0"
-                android:layout_row="2"
-                android:layout_toEndOf="@+id/buttonLeft"
-                android:layout_toRightOf="@+id/buttonLeft"
-                app:srcCompat="@android:drawable/arrow_up_float" />
+            <ImageView
+                android:id="@+id/imageInterface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/image_interface2" />
 
-            <ImageButton
-                android:id="@+id/buttonDown"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="15dp"
-                app:srcCompat="@android:drawable/arrow_down_float"
-                tools:layout_editor_absoluteX="172dp"
-                tools:layout_editor_absoluteY="474dp" />
+            <TextView
+                android:id="@+id/boardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/entsans"
+                android:text="TextView"
+                android:textColor="@android:color/white"
+                android:textColorLink="@android:color/background_light"
+                android:textSize="9sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="@+id/imageInterface"
+                app:layout_constraintTop_toTopOf="@+id/imageInterface"
+                app:layout_constraintVertical_bias="0.06999999" />
+
+            <TextView
+                android:id="@+id/textUsedMovesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/entsans"
+                android:gravity="center"
+                android:text="Moves"
+                android:textColor="@android:color/white"
+                android:textColorLink="@android:color/background_light"
+                android:textSize="9sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.96"
+                app:layout_constraintStart_toStartOf="@+id/imageInterface"
+                app:layout_constraintTop_toTopOf="@+id/imageInterface"
+                app:layout_constraintVertical_bias="0.06999999" />
+
+            <TextView
+                android:id="@+id/textUsedMoves"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/entsans"
+                android:gravity="center"
+                android:text="999"
+                android:textColor="@android:color/white"
+                android:textColorLink="@android:color/background_light"
+                android:textSize="9sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.96"
+                app:layout_constraintStart_toStartOf="@+id/imageInterface"
+                app:layout_constraintTop_toTopOf="@+id/imageInterface"
+                app:layout_constraintVertical_bias="0.18" />
 
             <ImageButton
                 android:id="@+id/buttonLeft"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/buttonDown"
-                android:layout_toStartOf="@+id/buttonDown"
-                app:srcCompat="@android:drawable/ic_media_previous" />
+                style="@android:style/Widget.Holo.ImageButton"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="?android:attr/textColorHint"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageInterface"
+                app:layout_constraintHorizontal_bias="0.35"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.48000002" />
+
+            <ImageButton
+                android:id="@+id/buttonDown"
+                style="@android:style/Widget.Holo.ImageButton"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="?android:attr/textColorHint"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageInterface"
+                app:layout_constraintStart_toStartOf="@+id/imageInterface"
+                app:layout_constraintTop_toTopOf="@+id/imageInterface"
+                app:layout_constraintVertical_bias="0.78" />
 
             <ImageButton
                 android:id="@+id/buttonRight"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_alignTop="@+id/buttonLeft"
-                android:layout_toEndOf="@+id/buttonUp"
-                android:layout_toRightOf="@+id/buttonUp"
-                app:srcCompat="@android:drawable/ic_media_next" />
+                style="@android:style/Widget.Holo.ImageButton"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="?android:attr/textColorHint"
+                app:layout_constraintBottom_toBottomOf="@+id/buttonLeft"
+                app:layout_constraintEnd_toEndOf="@+id/imageInterface"
+                app:layout_constraintHorizontal_bias="0.65"
+                app:layout_constraintStart_toStartOf="@+id/imageInterface"
+                app:layout_constraintTop_toTopOf="@+id/buttonLeft"
+                app:layout_constraintVertical_bias="0.52" />
 
             <ImageButton
-                android:id="@+id/buttonBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                app:srcCompat="@android:drawable/ic_media_rew" />
+                android:id="@+id/buttonUp"
+                style="@android:style/Widget.Holo.ImageButton"
+                android:layout_width="50dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="?android:attr/textColorHint"
+                app:layout_constraintBottom_toBottomOf="@+id/imageInterface"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/imageInterface"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.18" />
 
             <ImageButton
                 android:id="@+id/buttonReset"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignBottom="@+id/buttonBack"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                style="@android:style/Widget.Holo.ImageButton"
+                android:layout_width="60dp"
+                android:layout_height="61dp"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_menu_manage" />
+                android:backgroundTint="?android:attr/textColorHint"
+                app:layout_constraintBottom_toBottomOf="@+id/buttonBack"
+                app:layout_constraintStart_toStartOf="@+id/imageInterface"
+                app:layout_constraintTop_toTopOf="@+id/buttonBack" />
 
-        </RelativeLayout>
+            <ImageButton
+                android:id="@+id/buttonBack"
+                style="@android:style/Widget.Holo.ImageButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="?android:attr/textColorHint"
+                app:layout_constraintBottom_toBottomOf="@+id/imageInterface"
+                app:layout_constraintEnd_toEndOf="@+id/imageInterface"
+                app:layout_constraintTop_toTopOf="@+id/imageInterface"
+                app:layout_constraintVertical_bias="0.43" />
+
+        </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
 

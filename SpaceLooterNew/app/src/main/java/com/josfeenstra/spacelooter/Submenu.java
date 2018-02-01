@@ -1,11 +1,10 @@
 /*
     Activity: Submenu
     Author:   Jos Feenstra
-    Purpose:  Level select
+    Purpose:  Level select, specific navigation, show and measure progress
               - 5 Catagories: Easy , Medium, Hard, Expert, Custom
               - each giving a popup window, within it a scrollable list of levels
 
-              TODO back arrow must return to menu!
  */
 
 package com.josfeenstra.spacelooter;
@@ -13,10 +12,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +24,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -54,6 +54,26 @@ public class Submenu extends AppCompatActivity {
         buttonHard.setOnClickListener(  new onDifficultyClick(21, 30, (String) buttonHard.getText()));
         buttonExpert.setOnClickListener(new onDifficultyClick(31, 40, (String) buttonExpert.getText()));
         buttonCustom.setOnClickListener(new onDifficultyClick(0, 0,   (String) buttonCustom.getText()));
+
+    }
+
+    /*
+        show / hide all menu buttons for nice visuals
+     */
+    public void changeButtonStatus(boolean visible) {
+
+        int[] ALL_ID = {R.id.easyButton, R.id.mediumButton, R.id.hardButton, R.id.expertButton, R.id.customButton};
+
+        for (int id : ALL_ID) {
+            Button button = findViewById(id);
+
+            if (visible) {
+                button.setVisibility(View.VISIBLE);
+            } else {
+                button.setVisibility(View.INVISIBLE);
+            }
+
+        }
 
     }
 
@@ -96,7 +116,7 @@ public class Submenu extends AppCompatActivity {
             suBuilder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
+                    changeButtonStatus(true);
                 }
             });
 
@@ -107,7 +127,7 @@ public class Submenu extends AppCompatActivity {
             // set up list
             final String STANDARDTITLE = "Level ";
             ArrayList<ListItem> arrayOfListitems = new ArrayList<ListItem>();
-            for (int i = firstLevel; i <= lastLevel; i++) {
+            for (int i = firstLevel; i <= lastLevel && firstLevel != 0; i++) {
 
                 // find out if the level has been played before
                 String name = STANDARDTITLE+i;
@@ -154,7 +174,7 @@ public class Submenu extends AppCompatActivity {
             final ArrayList<ListItem> allItems = arrayOfListitems;
 
             // final preperations
-            subListAdapter adapter = new subListAdapter(getApplicationContext(), arrayOfListitems);
+            final subListAdapter adapter = new subListAdapter(getApplicationContext(), arrayOfListitems);
             ListView listView = (ListView) suView.findViewById(R.id.popupList);
             listView.setAdapter(adapter);
 
@@ -169,23 +189,83 @@ public class Submenu extends AppCompatActivity {
 
                     //figure out what thingie is pressed
                     final ListItem item = allItems.get(position);
-                    int selectedLevel = item.level;
 
                     // proceed only if the item is unlocked
                     if (item.unlocked) {
 
                         // go to that level
-                        gotoGame(selectedLevel, item.title);
+                        gotoGame(item.level, item.title);
                     }
                 }
             });
 
-            // create and show the dialog
+
+            // give it a Long listener if its the custom view, to delete custom levels
+            if (lastLevel == 0) {
+                // dont make a new longclicklistener class, it needs to access allItems
+                listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    // store the clicked item
+                    ListItem item;
+
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        //figure out what thingie is pressed
+                        item = allItems.get(position);
+
+                        // show alert if you really want to delete
+                        AlertDialog.Builder suBuilder = new AlertDialog.Builder(Submenu.this);
+                        suBuilder.setMessage("Delete " + item.title + "?").setPositiveButton("YES", dialogResetClickListener)
+                                .setNegativeButton("NO", dialogResetClickListener).show();
+
+                        return true;
+                    }
+
+                    DialogInterface.OnClickListener dialogResetClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case DialogInterface.BUTTON_POSITIVE:
+
+                                    //Yes button clicked, remove item from database
+                                    SharedPreferences ucl = getSharedPreferences(Menu.PREFDATA_UCL, 0);
+                                    SharedPreferences.Editor editor = ucl.edit();
+                                    editor.remove(item.title);
+                                    editor.commit();
+
+                                    // remove from arrayitems, and update the view
+                                    allItems.remove(item);
+                                    adapter.update();
+                                    break;
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    //No button clicked
+                                    break;
+                            }
+                        }
+                    };
+
+                });
+
+            }
+
+            // create the dialog
             dialog = suBuilder.create();
             dialog.setView(suView);
+
+            // change background color
+            ColorDrawable dialogColor = new ColorDrawable(Color.BLACK);
+            dialogColor.setAlpha(0xAA);
+            dialog.getWindow().setBackgroundDrawable(dialogColor);
+
+            // hide buttons
+            dialog.setCanceledOnTouchOutside(false);
+            changeButtonStatus(false);
+
+            // show dialog
             dialog.show();
         }
     }
+
     /*
         Class representing 1 item in the level select adapter
      */
@@ -227,32 +307,103 @@ public class Submenu extends AppCompatActivity {
             // Lookup view for data population
             TextView lvlName = (TextView) convertView.findViewById(R.id.popupListitemText);
             TextView lvlComp = (TextView) convertView.findViewById(R.id.popupListitemCompleted);
+            TextView lvlMoves = (TextView) convertView.findViewById(R.id.yourMoves);
+            int yourMoves = item.moves;
+            String lvlTitle  = "";
+
+            // get indexes of star reward elements, default everything to invisible
+            ImageView star1 = convertView.findViewById(R.id.star1);         star1.setVisibility(View.INVISIBLE);
+            TextView starText1 = convertView.findViewById(R.id.star1text);  starText1.setVisibility(View.INVISIBLE);
+            ImageView star2 = convertView.findViewById(R.id.star2);         star2.setVisibility(View.INVISIBLE);
+            TextView starText2 = convertView.findViewById(R.id.star2text);  starText2.setVisibility(View.INVISIBLE);
+            ImageView star3 = convertView.findViewById(R.id.star3);         star3.setVisibility(View.INVISIBLE);
+            TextView starText3 = convertView.findViewById(R.id.star3text);  starText3.setVisibility(View.INVISIBLE);
 
             // Populate the data into the template view using the data object
             if (item.title == null) {
-                lvlName.setText("Level " + item.level);
+                lvlTitle = "Level " + item.level;
+                lvlName.setText(lvlTitle);
             } else {
                 lvlName.setText(item.title);
             }
+
             if(item.unlocked) {
+                // item is unlocked but not completed
                 lvlName.setAlpha((float) 1);
-                lvlComp.setText("");
+                lvlComp.setVisibility(View.INVISIBLE);
+                lvlMoves.setVisibility(View.INVISIBLE);
             } else {
                 // show that the item is locked
                 lvlName.setAlpha((float) 0.3);
-                lvlComp.setText("");
+                lvlComp.setVisibility(View.INVISIBLE);
+                lvlMoves.setVisibility(View.INVISIBLE);
             }
 
-
             if (item.completed) {
+
                 // show completed stats
+                lvlComp.setVisibility(View.VISIBLE);
+                lvlMoves.setVisibility(View.VISIBLE);
                 lvlName.setAlpha(1);
-                lvlComp.setText("Completed in " + item.moves + " moves");
+                lvlMoves.setText("" + yourMoves);
+            }
+
+            // show star info if the level is not custom, and the level is avalable
+            if (item.title == null && item.unlocked) {
+
+                // default all star stuff to show up
+                star1.setVisibility(View.VISIBLE);
+                star2.setVisibility(View.VISIBLE);
+                star3.setVisibility(View.VISIBLE);
+                starText1.setVisibility(View.VISIBLE);
+                starText2.setVisibility(View.VISIBLE);
+                starText3.setVisibility(View.VISIBLE);
+
+                // get highscore values for stars & image id's
+                SharedPreferences highscore = getSharedPreferences(Menu.PREFDATA_HIGHSCORE, 0);
+                int silver = highscore.getInt(lvlTitle + "silver", -1);
+                int gold   = highscore.getInt(lvlTitle + "gold", -1);
+                int starOn = R.drawable.star_on;
+                int starOff = R.drawable.star_off;
+
+                // first star is always given. NOTE: listview image bug, image resource had to be manualy assigned
+                if (item.completed) {
+                    star1.setImageResource(starOn);
+                    starText1.setVisibility(View.INVISIBLE);
+                } else {
+                    star1.setImageResource(starOff);
+                    starText1.setText("-");
+                }
+
+                // second star is given if yourMoves < silver
+                if (item.completed && yourMoves < silver) {
+                    star2.setImageResource(starOn);
+                    starText2.setVisibility(View.INVISIBLE);
+                } else {
+                    star2.setImageResource(starOff);
+                    starText2.setText("" + silver);
+                }
+
+                // third star is given if yourMoves < gold
+                if (item.completed && yourMoves < gold) {
+                    star3.setImageResource(starOn);
+                    starText3.setVisibility(View.INVISIBLE);
+                } else {
+                    star3.setImageResource(starOff);
+                    starText3.setText("" + gold);
+                }
+
+
+
             }
 
 
             // Return the completed view to render on screen
             return convertView;
+        }
+
+        public void update() {
+            super.notifyDataSetChanged();
         }
     }
 
@@ -270,20 +421,6 @@ public class Submenu extends AppCompatActivity {
         } else {
             intent.putExtra("selectedCustomLevel", title);
         }
-        startActivity(intent);
-        finish();
-
-        // if dialog is open, close dialog
-        if (dialog != null) {
-            dialog.cancel();
-        }
-    }
-
-    public void gotoCustomGame(int levelID) {
-
-        // next intent
-        Intent intent = new Intent(Submenu.this, Game.class);
-        intent.putExtra("selectedLevel", -1);
         startActivity(intent);
         finish();
 

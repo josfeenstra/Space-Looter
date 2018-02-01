@@ -32,7 +32,7 @@ public class Game extends AppCompatActivity {
     public boolean dialogResponse;
     AlertDialog dialog;
     GridView boardView;
-
+    TextView movesUsed;
     boolean isCustom;
 
     CustomAdapter boardViewAdapter;
@@ -69,15 +69,13 @@ public class Game extends AppCompatActivity {
         // set up boardview
         boardViewData = b.getBoardViewData();
         boardView = (GridView) findViewById(R.id.boardView);
-        boardView.setNumColumns(b.width);
+
 
         // Create an object of CustomAdapter and set Adapter to boardView
         boardViewAdapter = new CustomAdapter(getApplicationContext(), sprites, boardViewData);
         boardView.setAdapter(boardViewAdapter);
-//        GridView.LayoutParams lp = new GridView.LayoutParams(
-//                (int) getResources().getDimension(R.dimen.width) * b.width,
-//                (int) getResources().getDimension(R.dimen.height) * b.width);
-//        boardView.setLayoutParams(lp);s
+        boardView.setNumColumns(b.width);
+
 
         // set up title
         TextView title = findViewById(R.id.boardTitle);
@@ -96,6 +94,10 @@ public class Game extends AppCompatActivity {
 
         ImageButton reset = findViewById(R.id.buttonReset);
         reset.setOnClickListener(new onResetBoard());
+
+        // set up tracker of moves
+        movesUsed = findViewById(R.id.textUsedMoves);
+        movesUsed.setText("0");
 
     }
 
@@ -180,7 +182,7 @@ public class Game extends AppCompatActivity {
         public View getView(int i, View view, ViewGroup viewGroup) {
 
             // inflate a view
-            view = inflter.inflate(R.layout.grid_item, null);
+            view = inflter.inflate(R.layout.board_item, null);
 
             // select and assign correct image
             ImageView sprite = (ImageView) view.findViewById(R.id.sprite);
@@ -205,10 +207,15 @@ public class Game extends AppCompatActivity {
            
             // save the fact that the game is won, and with how many steps
             int moves = b.boardHistoryState;
-            SharedPreferences settings = getSharedPreferences(Menu.PREFDATA_NAME, 0);
-            SharedPreferences.Editor editor = settings.edit();
+            SharedPreferences progress = getSharedPreferences(Menu.PREFDATA_NAME, 0);
+            SharedPreferences.Editor editor = progress.edit();
             editor.putBoolean("completed" + levelName, true);
-            editor.putInt("moves" + levelName, moves);
+
+            // only update moves if its better or if it doesnt exist yet
+            int existingMoves = progress.getInt("moves" + levelName, -1);
+            if (moves < existingMoves || existingMoves == -1) {
+                editor.putInt("moves" + levelName, moves);
+            }
             editor.commit();
 
             // set up popup window view
@@ -236,7 +243,18 @@ public class Game extends AppCompatActivity {
                 title.setText("Custom level complete!");
                 nextLevel.setVisibility(View.GONE);
                 retry.setVisibility(View.GONE);
+            } else {
+
+                // express high score stats in stars
+                String lvlTitle = "Level " + thisLevel;
+                SharedPreferences highscore = getSharedPreferences(Menu.PREFDATA_HIGHSCORE, 0);
+                int silver = highscore.getInt(lvlTitle + "silver", -1);
+                int gold   = highscore.getInt(lvlTitle + "gold", -1);
+
             }
+
+
+
 
             // set up dialog
             dialog = suBuilder.create();
@@ -284,7 +302,7 @@ public class Game extends AppCompatActivity {
         public void onClick(View v) {
 
             // go to the main screen
-            gotoMain();
+            gotoSubmenu();
         }
     }
 
@@ -451,6 +469,10 @@ public class Game extends AppCompatActivity {
         boardViewData = b.getBoardViewData();
         boardViewAdapter.refresh(boardViewData);
 
+        // update the movesused tracker
+        String moves = "" + b.boardHistoryState;
+        movesUsed.setText(moves);
+
         // check if the game is won
         checkWincondition();
 
@@ -465,7 +487,6 @@ public class Game extends AppCompatActivity {
 
     /*
         Route to the game activity
-        TODO WARNING THIS IS A COPY PASTE, CENTRALIZE THESE THINGS
     */
     public void gotoGame(int levelID) {
 
@@ -482,7 +503,6 @@ public class Game extends AppCompatActivity {
     }
     /*
         Route to the game activity
-        TODO WARNING THIS IS COPY PASTE
     */
     public void gotoMain() {
 
@@ -499,7 +519,6 @@ public class Game extends AppCompatActivity {
 
     /*
         Route to the game activity
-        TODO WARNING THIS IS COPY PASTE
     */
     private void gotoSubmenu() {
         // if dialog is open, close dialog

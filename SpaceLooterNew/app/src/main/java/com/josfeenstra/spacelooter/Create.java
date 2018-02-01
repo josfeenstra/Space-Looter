@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,6 +54,7 @@ public class Create extends AppCompatActivity {
     CustomAdapter boardViewAdapter;
     // get the sprite ID links from game
     int sprites[] = Game.sprites;
+    String names[] = GeneralData.names;
     int selectedSprite;
 
     // Keep track of the generated Data
@@ -83,12 +86,12 @@ public class Create extends AppCompatActivity {
 
         // set the item select spinner
         ArrayList<ItemData> list=new ArrayList<>();
-        for (int imageID : sprites) {
-            list.add(new ItemData("something", imageID));
+        for (int i = 0; i < sprites.length; i++) {
+            list.add(new ItemData(names[i], sprites[i]));
         }
 
         itemSelect = findViewById(R.id.spinnerItemSelect);
-        SpinnerAdapter adapter=new SpinnerAdapter(this, R.layout.spinner_item, R.id.img,list);
+        SpinnerAdapter adapter=new SpinnerAdapter(this, R.layout.spinner_item, R.id.spinnerImage,list);
         itemSelect.setAdapter(adapter);
         itemSelect.setVisibility(View.GONE);
     }
@@ -96,49 +99,49 @@ public class Create extends AppCompatActivity {
     /*
         The boardview adapter. TODO warning copy paste
     */
-    public class boardAdapter extends BaseAdapter {
-        Context context;
-        int sprites[];
-        int items[];
-        LayoutInflater inflter;
-        public boardAdapter(Context applicationContext, int[] sprites, int[] items) {
-            this.context = applicationContext;
-            this.sprites = sprites;
-            this.items = items;
-            inflter = (LayoutInflater.from(applicationContext));
-        }
-        @Override
-        public int getCount() {
-            return items.length;
-        }
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-
-            // inflate a view
-            view = inflter.inflate(R.layout.grid_item, null);
-
-            // select and assign correct image
-            ImageView sprite = (ImageView) view.findViewById(R.id.sprite);
-            int thisIndex = items[i];
-            sprite.setImageResource(sprites[thisIndex]);
-
-            return view;
-        }
-
-        // update data with new data
-        public void refresh(int[] newData) {
-            items = newData;
-            notifyDataSetChanged();
-        }
-    }
+//    public class boardAdapter extends BaseAdapter {
+//        Context context;
+//        int sprites[];
+//        int items[];
+//        LayoutInflater inflter;
+//        public boardAdapter(Context applicationContext, int[] sprites, int[] items) {
+//            this.context = applicationContext;
+//            this.sprites = sprites;
+//            this.items = items;
+//            inflter = (LayoutInflater.from(applicationContext));
+//        }
+//        @Override
+//        public int getCount() {
+//            return items.length;
+//        }
+//        @Override
+//        public Object getItem(int i) {
+//            return null;
+//        }
+//        @Override
+//        public long getItemId(int i) {
+//            return 0;
+//        }
+//        @Override
+//        public View getView(int i, View view, ViewGroup viewGroup) {
+//
+//            // inflate a view
+//            view = inflter.inflate(R.layout.board_item, null);
+//
+//            // select and assign correct image
+//            ImageView sprite = (ImageView) view.findViewById(R.id.sprite);
+//            int thisIndex = items[i];
+//            sprite.setImageResource(sprites[thisIndex]);
+//
+//            return view;
+//        }
+//
+//        // update data with new data
+//        public void refresh(int[] newData) {
+//            items = newData;
+//            notifyDataSetChanged();
+//        }
+//    }
 
     /*
         Step 1
@@ -158,7 +161,7 @@ public class Create extends AppCompatActivity {
 
         // set values for spinner adapter
         int MIN_SIZE = 7;
-        int MAX_SIZE = 16;
+        int MAX_SIZE = 13;
         int lim = MAX_SIZE - MIN_SIZE;
         String[] spinnerEntries = new String[lim];
         final int[] spinnerVal = new int[lim];
@@ -174,16 +177,39 @@ public class Create extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // get entry
+                String newLevelTitle = editText.getText().toString();
+
                 // check if name is filled, then assign name
-                if (editText.getText().toString().equals("")) {
-                    popup("please enter a name");
+                if (newLevelTitle.equals("")) {
+                    popup("Please enter a name");
                     return;
                 }
-                String newLevelTitle = editText.getText().toString();
+
+                // check if the name is avalable by testing the user greated levels sharedpref.
+                String ERROR = "error";
+                int ERROR2 = -1;
+                SharedPreferences ucl = getSharedPreferences(Menu.PREFDATA_UCL, 0);
+                String testLevel = ucl.getString(newLevelTitle, ERROR);
+
+                // check if the user hasnt filled in any of the standard 40 levels
+                SharedPreferences highscore = getSharedPreferences(Menu.PREFDATA_HIGHSCORE, 0);
+                int testLevel2 = highscore.getInt(newLevelTitle + "silver", ERROR2);
+
+                if (!testLevel.equals("" + ERROR) || testLevel2 != ERROR2) {
+                    popup("That name is taken.");
+                    return;
+                }
+
+                // the name cant be too long
+                int MAX_TITLE_LENGTH = 20;
+                if (newLevelTitle.length() > MAX_TITLE_LENGTH) {
+                    popup("That name is too long.");
+                    return;
+                }
 
                 // assign the selected width to the new width
                 int newLevelWidth = spinnerVal[spinner.getSelectedItemPosition()];
-
                 dialog.cancel();
 
                 // actually create the level
@@ -203,11 +229,7 @@ public class Create extends AppCompatActivity {
         dialog = suBuilder.create();
         dialog.setView(suView);
         dialog.show();
-
-
-
     }
-
 
     /*
         Step 2
@@ -358,7 +380,7 @@ public class Create extends AppCompatActivity {
         public View getView(int i, View view, ViewGroup viewGroup) {
 
             // inflate a view
-            view = inflter.inflate(R.layout.grid_item, null);
+            view = inflter.inflate(R.layout.board_item, null);
 
             // select and assign correct image
             ImageView sprite = (ImageView) view.findViewById(R.id.sprite);
@@ -414,9 +436,13 @@ public class Create extends AppCompatActivity {
         }
 
         public View getView(int position, View convertView, ViewGroup parent ){
-            View itemView=inflater.inflate(groupid,parent,false);
-            ImageView imageView=(ImageView)itemView.findViewById(R.id.img);
+            View itemView = inflater.inflate(groupid,parent,false);
+
+            ImageView imageView = itemView.findViewById(R.id.spinnerImage);
+            TextView textView = itemView.findViewById(R.id.spinnerText);
             imageView.setImageResource(list.get(position).getImageId());
+            textView.setText(list.get(position).getText());
+
             return itemView;
         }
 
@@ -440,7 +466,7 @@ public class Create extends AppCompatActivity {
             if (newLevelData != null) {
 
                 // send user a confirmation message
-                android.support.v7.app.AlertDialog.Builder suBuilder = new android.support.v7.app.AlertDialog.Builder(Create.this );
+                android.support.v7.app.AlertDialog.Builder suBuilder = new android.support.v7.app.AlertDialog.Builder(Create.this, AlertDialog.THEME_HOLO_DARK);
                 suBuilder.setMessage("Are you sure? Unsaved data will be lost!").setPositiveButton("YES", dialogResetClickListener)
                         .setNegativeButton("NO", dialogResetClickListener).show();
             } else {
@@ -481,7 +507,7 @@ public class Create extends AppCompatActivity {
             if (newLevelData != null) {
 
                 // send user a confirmation message
-                android.support.v7.app.AlertDialog.Builder suBuilder = new android.support.v7.app.AlertDialog.Builder(Create.this );
+                android.support.v7.app.AlertDialog.Builder suBuilder = new android.support.v7.app.AlertDialog.Builder(Create.this, AlertDialog.THEME_HOLO_DARK);
                 suBuilder.setMessage("Are you sure? Unsaved data will be lost!").setPositiveButton("YES", dialogResetClickListener)
                         .setNegativeButton("NO", dialogResetClickListener).show();
             } else {
@@ -521,7 +547,7 @@ public class Create extends AppCompatActivity {
             if (newLevelData != null && checkGameConditions()) {
 
                 // send user a confirmation message
-                android.support.v7.app.AlertDialog.Builder suBuilder = new android.support.v7.app.AlertDialog.Builder(Create.this );
+                android.support.v7.app.AlertDialog.Builder suBuilder = new android.support.v7.app.AlertDialog.Builder(Create.this, AlertDialog.THEME_HOLO_DARK);
                 suBuilder.setMessage("Save Game?").setPositiveButton("YES", dialogResetClickListener)
                         .setNegativeButton("NO", dialogResetClickListener).show();
             } else {

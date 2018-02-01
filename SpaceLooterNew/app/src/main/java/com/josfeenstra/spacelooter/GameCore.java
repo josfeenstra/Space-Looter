@@ -50,7 +50,7 @@ class GeneralData {
     static public final char nothing  = '-';
 
     // board pieces data
-    static public final String[] names      = {"empty", "wall", "player", "treasure", "blockH", "blockV", "exit", "nothing"};
+    static public final String[] names      = {"Empty", "Wall", "Player", "Treasure", "Hor. Block", "Ver. Block", "Exit", "Nothing"};
     static public final char[] symbols      = {empty  , wall  , player  , treasure  , blockH  , blockV  , exit  , nothing  };
     static public final boolean[] pushables = {false  , false , false   , true      , true    , true    , false , false    };
 
