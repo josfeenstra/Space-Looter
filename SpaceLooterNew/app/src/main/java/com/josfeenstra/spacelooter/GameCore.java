@@ -4,7 +4,6 @@
     Author:    Jos Feenstra
 
     Purpose:   Contains all classes related to the functionality of the game itself
-               Interact with the Game and Create class
 
     Structure: 4 classes:
 
@@ -468,7 +467,7 @@ class Board extends GeneralData {
                 }
             }
         }
-        // could find object
+        // couldnt find object
         return null;
     }
 

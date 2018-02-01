@@ -287,7 +287,7 @@ public class Create extends AppCompatActivity {
             int selId = itemSelect.getSelectedItemPosition();
             char selType = GeneralData.symbols[selId];
 
-            // modulo - like operation to get coordinates
+            // modulo-like operation to get coordinates
             int x = position;
             int y = 0;
             while (x >= newLevelWidth) {
@@ -540,7 +540,6 @@ public class Create extends AppCompatActivity {
     */
     @Override
     public void onBackPressed() {
-        // do something on back.
         gotoMenu();
     }
 
