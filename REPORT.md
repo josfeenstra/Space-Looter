@@ -114,6 +114,10 @@ Wel licht ik nog graag toe waarom de gebruikte classes van de GameCore totaal ni
 
 Er is niet meer gekeken naar online functionaliteit. Dit kan wellicht in mijn eigen tijd nog uitgewerkt worden, maar het had naar mijn mening geen functionele noodzaak, anders dan dat men wellicht iets wil doen met alle User Created Levels. 
 
+Ik ben ook niet meer toegekomen aan het verbeteren van de knoppen / UI in-game. Deze zweven nu als vierkantjes, boven de afbeeldingen daadwerkelijk bedoelt als interface. Android wordt niet heel erg blij van het idee van driehoekige knoppen, dus ik moest ergens de knoop doorhakken. Ook weet ik dat ik deze 'Boxes' had kunnen laten verwijnen, maar ik wil er zeker van zijn dat de knoppen bestaan, en de user enige feedback geven dat hij/zij een knop heeft ingedrukt. 
+
+Daarover gesproken, Het design document speekt ook van wat uitspraken rond Design principles. Deze heb ik gedeeltelijk toe weten te passen. De sprites bijvoorbeeld, waren eerste 256 x 256 pixels, wat het spel trager en groter maakte. Daarom zijn de sprites nu meer Low-Res. Andere dingen zijn niet toegepast vanwege een gebrek aan tijd. Sommige schermen hebben niet dezelfde layout als de rest van de app, De knoppen van het Create-scherm zijn nog basic, en nergens in de app worden geluidjes gebruikt voor feedback, terwijl de GameCore dit wel ondersteund (hij stuurt Log.d() berichtjes met de gewenste geluidseffecten). Toch zijn deze features niet van levensbelang, en de app heeft ze niet nodig om bruikbaar of "leuk" te zijn.   
+
 ## Closure 
 
 Ten slotte wil ik Martijn bedanken, sinds hij het toestond dat ik geen API hoefde te gebruiken. De tijd die ik niet hoefde te besteden in het zoeken en managen van een api, heb ik kunnen besteden aan het verder begrijpen van de mogelijkheden van Android Studio, en dit is de rede dat De app nu (naar eigen zeggen) in zo'n compleet stadium ingeleverd kon worden. 
