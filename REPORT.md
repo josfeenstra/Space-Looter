@@ -56,11 +56,15 @@ Om deze functionaliteit toe te staan moesten 3 sets aan data lokaal worden opges
     X,,,,,,,,X
     X,X,X,X,X,X,X,X,X
     
+Ook moesten de 40 levels van Treasure Quest op een bepaalde manier opgeslagen worden, om ze in te laden in de GameCore. Ik koos voor csv, aangezien het op deze wijze eenvoudig in te voeren was. Het had een veel groter probleem kunnen zijn, als ik de data op de fisieke kaartjes handmatig had moeten overzetten in bijvoorbeeld een json met coordinaten. 
+
+Wat ook fijn is van de csv, is dat deze in zn geheel eenvoudig om te zetten is als string. Ik gebruik deze strings aan data daarom ook als geschiedenis. In een grote array van strings worden alle voorgaande 'boardstates' opgeslagen, die vervolgens teruggeroepen kunnen worden om "terug in de tijd" te gaan.  
 
 ### functies 
 
-De hoeveelheid functies is zo omvangrijk, dat het moeilijk te beschrijven is als geheel. Voor de volledige technische werking van de app verwijs ik graag naar de pseudocode in de headers van de 5 java files, die het complete process van de app doorlopen. Als een Highlight, is de pseudo code - functionaliteit van de GameCore hieronder getoond. 
+De hoeveelheid functies is zo omvangrijk, dat het moeilijk te beschrijven is als geheel. Voor de volledige technische werking van de app verwijs ik graag naar de pseudocode in de headers van de 5 java files, die het complete process van de app globaal doorlopen. Als een Highlight, is de pseudo code & functionaliteit van de GameCore hieronder getoond. \
 
+    Gamecore 
 
     Structure: 4 classes:
 
@@ -91,13 +95,13 @@ De hoeveelheid functies is zo omvangrijk, dat het moeilijk te beschrijven is als
 ## challenges
 ##### Clearly describe challenges that your have met during development. Document all important changes that your have made with regard to your design document (from the PROCESS.md). Here, we can see how much you have learned in the past month.
 
-Je zou denken dat het spel zelf het lastigste deel van de app zou zijn. In tegendeel, door het probleem te isoleren, en de eerste week puur en alleen het spel te maken, was het spel
+Je zou denken dat het spel zelf het lastigste deel van de app zou zijn. Dit bleek redelijk mee te vallen. Door het probleem te isoleren, en de eerste week puur en alleen de core het spel te maken, was het spel zelf een niet al te intimiderende opdracht. 
+
+
 
 XML, boardview, interface was een drama
 
 listviews goed laten luisteren was lastig
-
-core was makkelijk
 
 csv was makkelijk
 
@@ -106,9 +110,9 @@ csv was makkelijk
 ### changes from initial design document
 ##### Defend your decisions by writing an argument of a most a single paragraph. Why was it good to do it different than you thought before? Are there trade-offs for your current solution? In an ideal world, given much more time, would you choose another solution?
 
-Bij het maken van het originele Design document, had ik al opgemerkt niet te kunnen zeggen hoe grote delen van de app eruit zouden komen
+Bij technical design is de 
 
-navigatie is in grote delen hetzelfde
+Bij het maken van het originele Design document, had ik al opgemerkt niet te kunnen zeggen hoe grote delen van de app eruit zouden komen
 
 Ik heb na het schrijven van de classes de design document deze er ook niet meer bijgepakt, of ze gebruikt als referentie. Ik heb voornamelijk de "advanced sketch" gebruikt als een Roadmap van hoe de app er uiteindelijk uit zou moeten zien, en dit was genoeg richting. De uiteindelijk geschreven code is een accumulatie van Design-solutions gemaakt terwijl de code geschreven wordt. Van tevoren vastleggen hoe de code er eruit komt de zien is in een ontwerpproces is daarom niet handig.
 
