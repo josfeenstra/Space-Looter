@@ -19,7 +19,7 @@ In het spel zelf is het de bedoeling om schatten / 'Treasure' / 'Loot' naar de u
 
 <img src="doc/documentation/phase%20final%20screenshots/Game.png" alt="Drawing" width="210" height="380"/> <img src="doc/documentation/phase%20final%20screenshots/Game2.png" alt="Drawing" width="210" height="380"/> <img src="doc/documentation/phase%20final%20screenshots/Game3.png" alt="Drawing" width="210" height="380"/> <img src="doc/documentation/phase%20final%20screenshots/GameComplete.png" alt="Drawing" width="210" height="380"/>
 
-Het doel van het spel is om met de Robot, de Loot (gele blokken) naar de uitgang te duwen. Dit doe je doormiddel van met de Robot stappen (omhoog, omlaag, links, rechts) te zetten. Bepaalde blokken kunnen niet verplaatst worden, andere kunnen alleen maar in 1 richting verplaatst worden (horizontaal / verticaal)
+Het doel van het spel is om met de Robot (rood), de Loot (geel) naar de uitgang (groen) te duwen. Dit doe je doormiddel van met de Robot stappen (omhoog, omlaag, links, rechts) te zetten. Bepaalde blokken kunnen niet verplaatst worden, andere kunnen alleen maar in 1 richting verplaatst worden (blauw)
 
 ### BetterCodeHub 
 [![BCH compliance](https://bettercodehub.com/edge/badge/josfeenstra/Space-Looter?branch=master)](https://bettercodehub.com/)
