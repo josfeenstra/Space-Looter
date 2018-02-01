@@ -11,9 +11,6 @@ In het spel zelf is het de bedoeling om schatten / 'Treasure' / 'Loot' naar de u
 <img src="doc/documentation/phase%20final%20screenshots/Game.png" alt="Drawing" width="200" height="350"/>
 
 ## Technical Design
-##### Create a report (REPORT.md), based on your design document, containing important decisions that you’ve made, e.g. where you changed your mind during the past weeks. This is how you show the reviewer that you actually understand what you have done.
-
-#### Clearly describe the technical design: how is the functionality implemented in your code? This should be like your DESIGN.md but updated to reflect the final application. First, give a high level overview, which helps us navigate and understand the total of your code (which components are there?). Second, go into detail, and describe the modules/classes (apps) files/functions (data) and how they relate.
 
 ![design document](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/design%20document.png)
 
@@ -39,16 +36,44 @@ Natuurlijk is er een class per activity gebruikt, die de functionaliteit van zij
 
 Een belangrijk onderdeel van de technische werking van het spel zelf in de Game en Create class, is de zogehete GameCore; een module bestaande uit 4 classes. deze 4 classes kunnen gezien worden als de "inner workings", die core van het spel managen. De gehele eerste week van dit project is besteed aan het schrijven van deze code, volledig buiten android studio om. Het spel was speelbaar in de command prompt, zie doc & het logboek voor details.    
 
+Om de 40 levels van het originele spel eenvoudig te kunnen maken 
+
 de classes zijn dus uiteindelijk geïsoleerd geplaatst in het android project, om nadruk te leggen op het feit dat ze een aparte, centrale rol spelen in het geheel. De gehele app dient eigenlijk als niets anders dan een interface voor deze GameCore. 
 
 ### functies 
 
-De hoeveelheid functies is zo omvangrijk, dat het moeilijk te beschrijven is als geheel. Er zijn vooral veel functies gebruikt in de GameCore, voor het toevoegen 
+De hoeveelheid functies is zo omvangrijk, dat het moeilijk te beschrijven is als geheel. Voor de volledige technische werking van de app verwijs ik graag naar de pseudocode in de headers van de 5 java files, die het complete process van de app doorlopen. 
+
+    Structure: 4 classes:
+
+     1. GeneralData
+        - Contains all static data
+        - name of game elements, the characters used to respresent them in csv files, etc
+        - 3 other classes are extentions from this class
+
+     2. CsvReader
+        - load a csv file from the raw resource folder
+        - replace any empty places, like ",,," with spaces " , , ,"
+        - return all csv data in 1 string, named gameData
+
+     3. Tile
+        - represents a single object on the board which can be placed as a tile (also empty ones).
+        - handles events like "can i move left?" and changeType.
+
+     4. Board
+        - can be seen as the actual core of the game
+        - construction:
+            - construct with gameData, gathered from the csv reader
+            - get the width and length of the board from gameData
+            - make a 2d array of Tile classes, based upon this width and height
+        - accepts game input, checks game input (check if move is legal), and update Tile array accordingly
+        - Keeps track of history, so undo's can be made
+        - show state of Tile array / board with functions printBoardState() and getBoardViewData()
 
 ## challenges
 ##### Clearly describe challenges that your have met during development. Document all important changes that your have made with regard to your design document (from the PROCESS.md). Here, we can see how much you have learned in the past month.
 
-Je zou denken dat het spel zelf het lastigste deel van de app zou zijn. In tegendeel, door het probleem te isoleren, en de eerste week puur en alleen het spel te maken
+Je zou denken dat het spel zelf het lastigste deel van de app zou zijn. In tegendeel, door het probleem te isoleren, en de eerste week puur en alleen het spel te maken, was het spel
 
 XML, boardview, interface was een drama
 
