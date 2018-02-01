@@ -106,11 +106,9 @@ Gedurende het schrijven van deze app, ben ik ook steeds confortabeler geworden m
 
 Het was misschien wel het lastigst om van te voren aan te geven hoe de code van de app eruit zou komen te zien. De uiteindelijk geschreven code is een accumulatie van design-oplossingen gemaakt terwijl de code geschreven wordt. Van tevoren vastleggen hoe de code er eruit komt de zien is in een ontwerpproces is daarom niet iets wat ik graag doe. Het is wel zo dat doormiddel van schetsen je uiteindelijk tot een ontwerp kan komen. Toch werk ik met het schrijven van code het liefst direct naar een bepaald resultaat toe, dan dat ik eerst de code "schets". Dit Onderdeel kon dus beter.
 
-### changes from initial design document
+## changes from initial design document
 
 Bij technical design zijn de verschillende veranderingen al aangegeven en toegeligd. Het zijn voornamelijk toevoegingen, geen veranderingen, dus vereisen geen verdere toelichting. 
-
-Ik heb niet veel 
 
 Wel licht ik nog graag toe waarom de gebruikte classes van de GameCore totaal niet lijken op de voorgestelde elementen van het design document. Ik heb bij het schrijven van de classes het design document er namelijk niet meer bijgepakt, of ze gebruikt als referentie. Ik heb voornamelijk de "advanced sketch" gebruikt als een Roadmap van hoe de app er uiteindelijk uit zou moeten zien, en dit was genoeg om het process richting te geven. De classes van het designdocument zijn dus niets anders dan een ruwe schatting. 
 
@@ -118,7 +116,7 @@ er is niet meer gekeken naar online functionaliteit. Dit kan wellicht in mijn ei
 
 ## Closure 
 
-ten slotte wil ik Martijn bedanken, sinds hij het toestond dat ik geen API hoefde te gebruiken. De tijd die ik niet hoefde te besteden in het zoeken en managen api heb ik kunnen steken in het verder begrijpen van de mogelijkheden van Android Studio, en dit is de rede dat De app nu (naar eigen zeggen) in zo'n compleet stadium ingeleverd kon worden. 
+ten slotte wil ik Martijn bedanken, sinds hij het toestond dat ik geen API hoefde te gebruiken. De tijd die ik niet hoefde te besteden in het zoeken en managen van een api, heb ik kunnen besteden aan het verder begrijpen van de mogelijkheden van Android Studio, en dit is de rede dat De app nu (naar eigen zeggen) in zo'n compleet stadium ingeleverd kon worden. 
 
 
 
