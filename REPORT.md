@@ -36,13 +36,31 @@ Natuurlijk is er een class per activity gebruikt, die de functionaliteit van zij
 
 Een belangrijk onderdeel van de technische werking van het spel zelf in de Game en Create class, is de zogehete GameCore; een module bestaande uit 4 classes. deze 4 classes kunnen gezien worden als de "inner workings", die core van het spel managen. De gehele eerste week van dit project is besteed aan het schrijven van deze code, volledig buiten android studio om. Het spel was speelbaar in de command prompt, zie doc & het logboek voor details.    
 
-Om de 40 levels van het originele spel eenvoudig te kunnen maken 
-
 de classes zijn dus uiteindelijk geïsoleerd geplaatst in het android project, om nadruk te leggen op het feit dat ze een aparte, centrale rol spelen in het geheel. De gehele app dient eigenlijk als niets anders dan een interface voor deze GameCore. 
+
+### data 
+
+    public static final String PREFDATA_NAME = "progress";
+    public static final String PREFDATA_HIGHSCORE = "high_score";
+    public static final String PREFDATA_UCL = "user_created_levels";
+
+Om deze functionaliteit toe te staan moesten 3 sets aan data lokaal worden opgeslagen: Voortgang, High-Score waarden, en zelf gemaakte levels. Deze separatie is handig zodat 1 van de 3 datasets compleet kan worden verwijderd, zonder dat de rest daar last van heeft. Deze worden in de app opgeslagen met de SharedPreferences functionaliteit. 
+
+    X,X,X,X,X,X,X,X,X
+    X,,,,,,,,X
+    X,,T,X, ,X,,X,X
+    X,,,H, ,H,,,X
+    X,,T,,V,H,V,O,E
+    X,,,H,,H,,,X
+    X,,T,X,,X,,X,X
+    X,,,,,,,,X
+    X,X,X,X,X,X,X,X,X
+    
 
 ### functies 
 
-De hoeveelheid functies is zo omvangrijk, dat het moeilijk te beschrijven is als geheel. Voor de volledige technische werking van de app verwijs ik graag naar de pseudocode in de headers van de 5 java files, die het complete process van de app doorlopen. 
+De hoeveelheid functies is zo omvangrijk, dat het moeilijk te beschrijven is als geheel. Voor de volledige technische werking van de app verwijs ik graag naar de pseudocode in de headers van de 5 java files, die het complete process van de app doorlopen. Als een Highlight, is de pseudo code - functionaliteit van de GameCore hieronder getoond. 
+
 
     Structure: 4 classes:
 
