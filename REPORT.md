@@ -8,6 +8,8 @@ De app bevat de originele 40 levels. Daarnaast wordt de speler, anders dan in he
 
 In het spel zelf is het de bedoeling om schatten / 'Treasure' / 'Loot' naar de uitgang te duwen. Dit doe je doormiddel van het besturen van een robot. Er liggen ook diverse obstakels in de weg, die de robot ook weg kan duwen, maar enkel in 1 richting. Logisch denken is nodig om de duwvolgorde te bepalen, en alle Loot naar de uitgang te duwen.
 
+<img src="Menu.png" alt="Drawing" style="width: 200px;"/>
+
 ![screen1](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/phase%20final%20screenshots/Menu.png)![sceen2](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/phase%20final%20screenshots/device-2018-02-01-152404.png)![screen3](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/phase%20final%20screenshots/Game.png)![screen4](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/phase%20final%20screenshots/Create.png)
 
 ### Technical Design
