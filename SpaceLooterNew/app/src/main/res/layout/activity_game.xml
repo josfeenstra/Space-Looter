@@ -15,16 +15,21 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="400dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="10px">
 
             <GridView
                 android:id="@+id/boardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:columnWidth="40dp"
-                android:foregroundGravity="center"
-                android:stretchMode="columnWidth">
+                android:horizontalSpacing="0dp"
+                android:numColumns="7"
+                android:stretchMode="none"
+                android:verticalSpacing="0dp">
 
             </GridView>
 

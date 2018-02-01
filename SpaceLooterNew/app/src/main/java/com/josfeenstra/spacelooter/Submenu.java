@@ -432,7 +432,6 @@ public class Submenu extends AppCompatActivity {
 
     /*
         Route to the game activity
-        TODO WARNING THIS IS COPY PASTE
     */
     public void gotoMain() {
 

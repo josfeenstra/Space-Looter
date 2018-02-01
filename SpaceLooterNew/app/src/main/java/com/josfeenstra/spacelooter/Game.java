@@ -6,10 +6,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +22,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +33,10 @@ public class Game extends AppCompatActivity {
     int thisLevel;
     int[] boardViewData;
     String levelName;
-    public boolean dialogResponse;
     AlertDialog dialog;
     GridView boardView;
     TextView movesUsed;
     boolean isCustom;
-
     CustomAdapter boardViewAdapter;
     Board b;
     CsvReader csv;
@@ -70,12 +72,19 @@ public class Game extends AppCompatActivity {
         boardViewData = b.getBoardViewData();
         boardView = (GridView) findViewById(R.id.boardView);
 
+        // set the width / height unit based on screen width
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+        int screen_width = outMetrics.widthPixels;
+        int BOARD_PADDING = 40;
+        int boardUnit = (screen_width - BOARD_PADDING) / b.width;
 
         // Create an object of CustomAdapter and set Adapter to boardView
-        boardViewAdapter = new CustomAdapter(getApplicationContext(), sprites, boardViewData);
+        boardViewAdapter = new CustomAdapter(getApplicationContext(), sprites, boardViewData, boardUnit);
         boardView.setAdapter(boardViewAdapter);
         boardView.setNumColumns(b.width);
-
+        boardView.setColumnWidth(boardUnit);
 
         // set up title
         TextView title = findViewById(R.id.boardTitle);
@@ -155,15 +164,17 @@ public class Game extends AppCompatActivity {
     /*
         The boardview adapter.
     */
-    public class CustomAdapter extends BaseAdapter {
+    public static class CustomAdapter extends BaseAdapter {
         Context context;
         int sprites[];
         int logos[];
         LayoutInflater inflter;
-        public CustomAdapter(Context applicationContext, int[] sprites, int[] logos) {
+        int boardUnit;
+        public CustomAdapter(Context applicationContext, int[] sprites, int[] logos, int boardUnit) {
             this.context = applicationContext;
             this.sprites = sprites;
             this.logos = logos;
+            this.boardUnit = boardUnit;
             inflter = (LayoutInflater.from(applicationContext));
         }
         @Override
@@ -188,6 +199,10 @@ public class Game extends AppCompatActivity {
             ImageView sprite = (ImageView) view.findViewById(R.id.sprite);
             int thisIndex = logos[i];
             sprite.setImageResource(sprites[thisIndex]);
+
+            // resize imageview according to screen
+            ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(boardUnit, boardUnit);
+            view.setLayoutParams(layoutParams);
 
             return view;
         }
@@ -330,77 +345,6 @@ public class Game extends AppCompatActivity {
 
             // re-initiate screen but with the same level
             gotoGame(thisLevel);
-        }
-    }
-
-
-    /*
-        handle all game related button presses
-     */
-    public class onGameTouch implements View.OnTouchListener {
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-
-            if(event.getAction() == MotionEvent.ACTION_UP) {
-                return false;
-            }
-
-            // find out which button is pressed
-            int buttonID;
-            switch(v.getId()) {
-                case R.id.buttonUp:
-                    buttonID = b.up;
-                    break;
-                case R.id.buttonDown:
-                    buttonID = b.down;
-                    break;
-                case R.id.buttonLeft:
-                    buttonID = b.left;
-                    break;
-                case R.id.buttonRight:
-                    buttonID = b.right;
-                    break;
-                case R.id.buttonBack:
-                    buttonID = b.back;
-                    break;
-//                case R.id.buttonReset:
-//                    buttonID = b.reset;
-//                    break;
-                default:
-                    buttonID = 1337;
-            }
-
-            // put that into the game input
-            int feedback = b.gameInput(buttonID);
-
-            // play a sound according to the feedback
-            switch(feedback) {
-                case -1:   b.print("error");
-                    break;
-                case 0:    b.print("*tok*");
-                    break;
-                case 1:    b.print("*step...*");
-                    break;
-                case 2:    b.print("*schhuif...*");
-                    break;
-                case 3:    b.print("*CA-CHING!*");
-                    break;
-                case 10:   b.print("*Wha wha*");
-                    break;
-                case 11:   b.print("*Whoooshh*");
-                    break;
-
-            }
-            // update the board
-            boardViewData = b.getBoardViewData();
-            boardViewAdapter.refresh(boardViewData);
-
-
-            b.printState();
-
-
-            return false;
         }
     }
 

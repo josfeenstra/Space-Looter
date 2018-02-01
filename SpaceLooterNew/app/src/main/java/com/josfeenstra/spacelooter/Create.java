@@ -11,6 +11,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +53,7 @@ public class Create extends AppCompatActivity {
     AlertDialog dialog;
     int[]       boardViewData;
     Spinner     itemSelect;
-    CustomAdapter boardViewAdapter;
+    Game.CustomAdapter boardViewAdapter;
     // get the sprite ID links from game
     int sprites[] = Game.sprites;
     String names[] = GeneralData.names;
@@ -95,53 +97,6 @@ public class Create extends AppCompatActivity {
         itemSelect.setAdapter(adapter);
         itemSelect.setVisibility(View.GONE);
     }
-
-    /*
-        The boardview adapter. TODO warning copy paste
-    */
-//    public class boardAdapter extends BaseAdapter {
-//        Context context;
-//        int sprites[];
-//        int items[];
-//        LayoutInflater inflter;
-//        public boardAdapter(Context applicationContext, int[] sprites, int[] items) {
-//            this.context = applicationContext;
-//            this.sprites = sprites;
-//            this.items = items;
-//            inflter = (LayoutInflater.from(applicationContext));
-//        }
-//        @Override
-//        public int getCount() {
-//            return items.length;
-//        }
-//        @Override
-//        public Object getItem(int i) {
-//            return null;
-//        }
-//        @Override
-//        public long getItemId(int i) {
-//            return 0;
-//        }
-//        @Override
-//        public View getView(int i, View view, ViewGroup viewGroup) {
-//
-//            // inflate a view
-//            view = inflter.inflate(R.layout.board_item, null);
-//
-//            // select and assign correct image
-//            ImageView sprite = (ImageView) view.findViewById(R.id.sprite);
-//            int thisIndex = items[i];
-//            sprite.setImageResource(sprites[thisIndex]);
-//
-//            return view;
-//        }
-//
-//        // update data with new data
-//        public void refresh(int[] newData) {
-//            items = newData;
-//            notifyDataSetChanged();
-//        }
-//    }
 
     /*
         Step 1
@@ -291,10 +246,18 @@ public class Create extends AppCompatActivity {
         boardView = (GridView) findViewById(R.id.boardView);
         boardView.setNumColumns(b.width);
 
+        // set the width / height unit based on screen width
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+        int screen_width = outMetrics.widthPixels;
+        int boardUnit = (screen_width) / b.width;
+
         // Create an object of CustomAdapter and set Adapter to boardView
-        boardViewAdapter = new CustomAdapter(getApplicationContext(), sprites, boardViewData);
+        boardViewAdapter = new Game.CustomAdapter(getApplicationContext(), sprites, boardViewData, boardUnit);
         boardView.setAdapter(boardViewAdapter);
         boardView.setOnItemClickListener(new OnTileClick());
+        boardView.setColumnWidth(boardUnit);
 
         // update text of boardtitle
         TextView boardTitle = findViewById(R.id.boardTitle);
@@ -353,50 +316,51 @@ public class Create extends AppCompatActivity {
     /*
         The boardview adapter.
     */
-    public class CustomAdapter extends BaseAdapter {
-        Context context;
-        int sprites[];
-        int logos[];
-        LayoutInflater inflter;
-        public CustomAdapter(Context applicationContext, int[] sprites, int[] logos) {
-            this.context = applicationContext;
-            this.sprites = sprites;
-            this.logos = logos;
-            inflter = (LayoutInflater.from(applicationContext));
-        }
-        @Override
-        public int getCount() {
-            return logos.length;
-        }
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-
-            // inflate a view
-            view = inflter.inflate(R.layout.board_item, null);
-
-            // select and assign correct image
-            ImageView sprite = (ImageView) view.findViewById(R.id.sprite);
-            int thisIndex = logos[i];
-            sprite.setImageResource(sprites[thisIndex]);
-
-            return view;
-        }
-
-        // update data with new data
-        public void refresh(int[] newData) {
-            logos = newData;
-            notifyDataSetChanged();
-        }
-    }
-
+//
+//    public class CustomAdapter extends BaseAdapter {
+//        Context context;
+//        int sprites[];
+//        int logos[];
+//        LayoutInflater inflter;
+//        public CustomAdapter(Context applicationContext, int[] sprites, int[] logos) {
+//            this.context = applicationContext;
+//            this.sprites = sprites;
+//            this.logos = logos;
+//            inflter = (LayoutInflater.from(applicationContext));
+//        }
+//        @Override
+//        public int getCount() {
+//            return logos.length;
+//        }
+//        @Override
+//        public Object getItem(int i) {
+//            return null;
+//        }
+//        @Override
+//        public long getItemId(int i) {
+//            return 0;
+//        }
+//        @Override
+//        public View getView(int i, View view, ViewGroup viewGroup) {
+//
+//            // inflate a view
+//            view = inflter.inflate(R.layout.board_item, null);
+//
+//            // select and assign correct image
+//            ImageView sprite = (ImageView) view.findViewById(R.id.sprite);
+//            int thisIndex = logos[i];
+//            sprite.setImageResource(sprites[thisIndex]);
+//
+//            return view;
+//        }
+//
+//        // update data with new data
+//        public void refresh(int[] newData) {
+//            logos = newData;
+//            notifyDataSetChanged();
+//        }
+//    }
+//
 
     /*
         The itemSelect adapter data.
