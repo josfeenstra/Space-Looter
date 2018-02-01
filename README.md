@@ -3,48 +3,25 @@
 <img src="doc/documentation/phase%20final%20screenshots/Menu.png" alt="Drawing" width="220" height="380"/><img src="doc/documentation/phase%20final%20screenshots/device-2018-02-01-152404.png" alt="Drawing" width="220" height="380"/><img src="doc/documentation/phase%20final%20screenshots/Game.png" alt="Drawing" width="220" height="380"/><img src="doc/documentation/phase%20final%20screenshots/Create.png" alt="Drawing" width="220" height="380"/>
 
 ## Probleemstelling:
-Analoge puzzel bordspellen, zoals rush hour, moeten met de tijd meegaan om relevant te blijven. Dit soort spellen van bijvoorbeeld Thinkfun of Smart Games zijn vaak erg goed uitgewerkt, en bevatten (40) goed ontworpen "levels.". Helaas zal hier weinig van gebruikt worden, sinds men niet meer bereid is een plastic bordspel mee te nemen in de trein of auto. Men kan immers honderden spellen installeren op hun mobieltje of tablet. 
+Analoge puzzel bordspellen, zoals rush hour, moeten met de tijd meegaan om relevant te blijven. Dit soort spellen van bijvoorbeeld Thinkfun of Smart Games zijn vaak erg goed uitgewerkt, en bevatten 40 goed ontworpen levels. Helaas zal hier weinig van gebruikt worden, sinds men niet meer bereid is een plastic bordspel mee te nemen in de trein of auto. Men kan immers honderden spellen installeren op hun mobieltje of tablet. 
 
 Daarnaast verwacht men nu ook meer van een spel of app. Het moet niet uitgespeeld zijn na 40 levels, er moet op een bepaalde manier verder gespeeld kunnen worden, of het spel zal snel weer worden vergeten. 
 
 ## Beschrijving:
-deze app dient als een digitale port van een analoog puzzel bordspel, de naam en het thema zijn veranderd voor copyright redenen. 
 
-De app bevat de 40 orginele levels, onderverdeelt in 4 catagorieën.
+Deze app is een "digitalisatie" van het éénpersoons puzzel bordspel "Treasure Quest" van ThinkFun. Het is gemaakt in de bedoeling dat Thinkfun's spel niet zou worden vergeten, maar ook in deze tijd nog vollop gespeeld kan en zal worden.
 
-De app houdt je progress bij, en deze progress kan gereset worden. 
+De app bevat de originele 40 levels. Daarnaast wordt de speler, anders dan in het echte spel, uitgedaagd om de puzzels op te lossen in zo min mogelijk stappen door middel van high scores, en is het mogelijk om zelf levels te maken en vervolgens te spelen.
+
+In het spel zelf is het de bedoeling om schatten / 'Treasure' / 'Loot' naar de uitgang te duwen. Dit doe je doormiddel van het besturen van een robot. Er liggen ook diverse obstakels in de weg, die de robot ook weg kan duwen, maar enkel in 1 richting. Logisch denken is nodig om de duwvolgorde te bepalen, en alle Loot naar de uitgang te duwen.
 
 ## sketch
-Structuur van de app
-![boardstate](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/schets%20alles.png)
-de daily puzzle is geschrapt.
+
 
 ## voorbeeld bord:
-Het doel van het spel is om met de HERO (rode cirkel), de LOOT (gele blokken) naar de uitgang te duwen. Dit doe je doormiddel van met de HERO stappen (omhoog, omlaag, links, rechts) te zetten. Bepaalde blokken kunnen niet verplaatst worden, andere kunnen alleen maar in 1 richting verplaatst worden (horizontaal / verticaal)
+<img src="doc/documentation/phase%20final%20screenshots/Game.png" alt="Drawing" width="220" height="380"/>
 
-![boardstate](https://raw.githubusercontent.com/josfeenstra/Space-Looter/master/doc/documentation/voorbeeld%20board.png)
-
-## TODO: 
-BASIC FUNCTIONALITY
-- maak een hoofdmenu met de knoppen: 
--- LEVELS (easy, medium, hard, expert) 
--- SETTINGS 
-
-GRAPHICS
-- Maak betere sprites voor alle elementen.
-- maak animaties bij het schuiven van elementen. 
-- verbeter de UI
-- verbeter het hoofdmenu
-
-HET SPEL 
-- maak een class datastructuur waarin de functionaliteit van de objecten logisch is.
-- 
-
-## BONUS:
-Als de tijd het toelaat, of als de app minder complex dan gedacht lijkt te zijn worden (een van de) volgende features toegepast: 
-- je progresss wordt gebonden aan een account.  
-- een "create your own level" knop in het hoofdmenu. Spelers kunnen zelf een level maken, deze validaten en opslaan. 
-  - nieuwe levels worden gebonden aan het account, en spelers kunnen de spellen van anderen zien en spelen
+Het doel van het spel is om met de Robot, de Loot (gele blokken) naar de uitgang te duwen. Dit doe je doormiddel van met de Robot stappen (omhoog, omlaag, links, rechts) te zetten. Bepaalde blokken kunnen niet verplaatst worden, andere kunnen alleen maar in 1 richting verplaatst worden (horizontaal / verticaal)
 
 ### BetterCodeHub 
 [![BCH compliance](https://bettercodehub.com/edge/badge/josfeenstra/Space-Looter?branch=master)](https://bettercodehub.com/)
