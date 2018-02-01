@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 DISCLAIMERS 
+
 We do not own any of the level / game design features of Treasure Quest by ThinkFun Games. App is made for non-commercial, accadamic purposes only. 
 
 We do not own space_purple_nebula image, used as background, and the UI_interface image used in game. These images are Copyrighted to The Respective Creators, Designers and Authors.
