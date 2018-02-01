@@ -1,5 +1,7 @@
 # Space-Looter
 
+<img src="doc/documentation/phase%20final%20screenshots/Game.png" alt="Drawing" width="200" height="350"/><img src="doc/documentation/phase%20final%20screenshots/Game.png" alt="Drawing" width="200" height="350"/><img src="doc/documentation/phase%20final%20screenshots/Game.png" alt="Drawing" width="200" height="350"/><img src="doc/documentation/phase%20final%20screenshots/Game.png" alt="Drawing" width="200" height="350"/>
+
 ## Probleemstelling:
 Analoge puzzel bordspellen, zoals rush hour, moeten met de tijd meegaan om relevant te blijven. Dit soort spellen van bijvoorbeeld Thinkfun of Smart Games zijn vaak erg goed uitgewerkt, en bevatten (40) goed ontworpen "levels.". Helaas zal hier weinig van gebruikt worden, sinds men niet meer bereid is een plastic bordspel mee te nemen in de trein of auto. Men kan immers honderden spellen installeren op hun mobieltje of tablet. 
 
