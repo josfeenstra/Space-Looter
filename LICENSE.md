@@ -20,8 +20,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-
-
 DISCLAIMERS 
 We do not own any of the level / game design features of Treasure Quest by ThinkFun Games. App is made for non-commercial, accadamic purposes only. 
 
