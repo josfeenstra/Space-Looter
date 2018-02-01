@@ -112,11 +112,11 @@ Bij technical design zijn de verschillende veranderingen al aangegeven en toegel
 
 Wel licht ik nog graag toe waarom de gebruikte classes van de GameCore totaal niet lijken op de voorgestelde elementen van het design document. Ik heb bij het schrijven van de classes het design document er namelijk niet meer bijgepakt, of ze gebruikt als referentie. Ik heb voornamelijk de "advanced sketch" gebruikt als een Roadmap van hoe de app er uiteindelijk uit zou moeten zien, en dit was genoeg om het process richting te geven. De classes van het designdocument zijn dus niets anders dan een ruwe schatting. 
 
-er is niet meer gekeken naar online functionaliteit. Dit kan wellicht in mijn eigen tijd nog uitgewerkt worden, maar het had naar mijn mening geen functionele noodzaak, anders dan dat men wellicht iets wil doen met alle User Created Levels. 
+Er is niet meer gekeken naar online functionaliteit. Dit kan wellicht in mijn eigen tijd nog uitgewerkt worden, maar het had naar mijn mening geen functionele noodzaak, anders dan dat men wellicht iets wil doen met alle User Created Levels. 
 
 ## Closure 
 
-ten slotte wil ik Martijn bedanken, sinds hij het toestond dat ik geen API hoefde te gebruiken. De tijd die ik niet hoefde te besteden in het zoeken en managen van een api, heb ik kunnen besteden aan het verder begrijpen van de mogelijkheden van Android Studio, en dit is de rede dat De app nu (naar eigen zeggen) in zo'n compleet stadium ingeleverd kon worden. 
+Ten slotte wil ik Martijn bedanken, sinds hij het toestond dat ik geen API hoefde te gebruiken. De tijd die ik niet hoefde te besteden in het zoeken en managen van een api, heb ik kunnen besteden aan het verder begrijpen van de mogelijkheden van Android Studio, en dit is de rede dat De app nu (naar eigen zeggen) in zo'n compleet stadium ingeleverd kon worden. 
 
 
 
