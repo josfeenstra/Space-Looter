@@ -59,7 +59,10 @@ Als de tijd het toelaat, of als de app minder complex dan gedacht lijkt te zijn 
 - een "create your own level" knop in het hoofdmenu. Spelers kunnen zelf een level maken, deze validaten en opslaan. 
   - nieuwe levels worden gebonden aan het account, en spelers kunnen de spellen van anderen zien en spelen
 
+### BetterCodeHub 
+[![BCH compliance](https://bettercodehub.com/edge/badge/josfeenstra/Space-Looter?branch=master)](https://bettercodehub.com/)
 
+BCH is niet erg blij met mn prestatie. Terecht, sommige stukken code zijn ontzettend lang, en wat ingewikkeld, met classes in classes. Echter, als ik deze uit elkaar had willen trekken, levert dit bijna net zoveel onduidelijkheid en complicaties op, met de grote hoeveelheid variablelen die dan doorgeschoven moeten worden, functies die niet werken in een static context, variablelen die ik niet zomaal final kan maken, enzovoort. Dat ik een spel heb gemaakt in een context die eigenlijk niet bedoelt is om spellen in te maken, is ook iets waardoor de code soms gecompliceerd is. Ik heb dit gecompenseerd door veel comments toe te voegen. 
 
 
 
