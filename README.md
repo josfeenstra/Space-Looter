@@ -1,4 +1,4 @@
-# Space-Looter
+# Space Looter
 
 <img src="doc/documentation/phase%20final%20screenshots/Menu.png" alt="Drawing" width="210" height="380"/> <img src="doc/documentation/phase%20final%20screenshots/device-2018-02-01-152404.png" alt="Drawing" width="210" height="380"/> <img src="doc/documentation/phase%20final%20screenshots/Game.png" alt="Drawing" width="210" height="380"/> <img src="doc/documentation/phase%20final%20screenshots/Create.png" alt="Drawing" width="210" height="380"/>
 
