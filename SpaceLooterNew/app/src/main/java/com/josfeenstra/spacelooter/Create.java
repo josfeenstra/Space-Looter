@@ -170,6 +170,24 @@ public class Create extends AppCompatActivity {
                     return;
                 }
 
+                // make a developer mode cheat code
+                String CHEAT = "henkpieterkees";
+                if (newLevelTitle.equals(CHEAT)) {
+                    popup("cheat enabled");
+                    int FROM = 1;
+                    int TO = 40;
+                    for (int i = FROM; i <= TO; i++) {
+                        String levelName = "Level " + i;
+                        SharedPreferences progress = getSharedPreferences(Menu.PREFDATA_NAME, 0);
+                        SharedPreferences.Editor editor = progress.edit();
+                        editor.putBoolean("completed" + levelName, true);
+                        editor.commit();
+                    }
+
+
+
+                }
+
                 // assign the selected width to the new width
                 int newLevelWidth = spinnerVal[spinner.getSelectedItemPosition()];
                 dialog.cancel();

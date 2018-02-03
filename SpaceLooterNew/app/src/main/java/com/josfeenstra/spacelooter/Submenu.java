@@ -409,7 +409,7 @@ public class Submenu extends AppCompatActivity {
                 }
 
                 // second star is given if yourMoves < silver
-                if (item.completed && yourMoves < silver) {
+                if (item.completed && yourMoves <= silver) {
                     star2.setImageResource(starOn);
                     starText2.setVisibility(View.INVISIBLE);
                 } else {
@@ -418,7 +418,7 @@ public class Submenu extends AppCompatActivity {
                 }
 
                 // third star is given if yourMoves < gold
-                if (item.completed && yourMoves < gold) {
+                if (item.completed && yourMoves <= gold) {
                     star3.setImageResource(starOn);
                     starText3.setVisibility(View.INVISIBLE);
                 } else {
